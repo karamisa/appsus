@@ -11,6 +11,9 @@ export const notesService = {
     removeNoteById,
     save,
     getEmptyNote,
+    getNewEmptyNotes,
+    createEmptyNote,
+    createNote,
     getNextNoteId,
     getPrevNoteId,
     setFilterBy,
@@ -57,6 +60,56 @@ function getEmptyNote(type = 'note-txt', backgroundColor = '#ffffff') {
     return { id: '', type, info, backgroundColor }
 }
 
+
+function getNewEmptyNotes(type) {
+    let emptyItem = {}
+    switch (type) {
+        case 'note-txt':
+            emptyItem = {
+                type: 'note-txt',
+                isPinned: false,
+                info: {
+                    title: '',
+                    txt: '',
+                },
+                style: {
+                    backgroundColor: '#ffffff'
+                }
+             }
+            break
+        case 'note-img':
+            emptyItem = {
+                type: 'note-img',
+                isPinned: false,
+                info: {
+                    title: '',
+                    url: '',
+                },
+                style: {
+                    backgroundColor: '#ffffff'
+                }
+             }
+            break
+        case 'note-todos':
+            emptyItem = {
+                type: 'note-todo',
+                isPinned: false,
+                info: {
+                    lable: '',
+                    title: '',
+                    todos:[
+                        {txt:'' , doneAt: null}
+                    ]
+                },
+                style: {
+                    backgroundColor: '#ffffff'
+                }
+             }
+            break
+    }
+    return emptyItem
+}
+
 function _setInfoType(type) {
     let emptyItem = {}
     switch (type) {
@@ -76,6 +129,69 @@ function _setInfoType(type) {
 function getNewTodo() {
     return emptyTodo = { txt: '', done: null, id: utilService.makeId() }
 }
+
+
+function createEmptyNote(){
+    return {
+        type: '',
+        isPinned: false,
+        info: {},
+        style: {
+            backgroundColor: '#ffffff',
+        }
+    }
+}
+
+
+function createNote(value, type) { //use this one
+    let notes = utilService.loadFromStorage(NOTES_KEY)
+    const infoKey = getInfoKeyByType(type)
+
+    let note = {
+        id: utilService.makeId(),
+        type: type,
+        isPinned: false,
+        info: {
+            [infoKey]: value,
+        },
+        style: {
+            backgroundColor: '#ffffff',
+        }
+
+    }
+    if (type === 'note-todos') note.info.todos = []
+    notes.unshift(note);
+    utilService.saveToStorage(NOTES_KEY, notes)
+}
+
+function _setInfoByType(type) {
+     switch (type) {
+        case 'note-txt':
+            return 'txt'
+        case 'note-img':
+            return 'url'
+        case 'note-todos':
+            return 'title'
+    }
+}
+
+
+function addTodo(value, noteId) {
+    let notes = utilService.loadFromStorage(NOTES_KEY)
+    let noteIdx = notes.findIndex(note => note.id === noteId)
+    notes[noteIdx].info.todos.unshift(_createTodo(value))
+    utilService.saveToStorage(NOTES_KEY, notes)
+    // return Promise.resolve()
+}
+
+function _createTodo(txt) {
+    return {
+        id: utilService.makeId(),
+        txt,
+        isDone: false,
+    }
+}
+
 
 function getNextNoteId(noteId) {
     return storageService.query(NOTES_KEY)
@@ -159,5 +275,3 @@ function _createNotes() {  //takes notes from sotrage. if there aren't any. crea
     }
 
 }
-
-

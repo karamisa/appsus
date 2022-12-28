@@ -2,6 +2,7 @@ const { useState, useEffect } = React
 const {Link} = ReactRouterDOM
 
 import { AddNote } from "../cmps/add-note.jsx"
+import { AddNotes } from "../cmps/add-notes.jsx"
 import { NoteFilter } from "../cmps/note-filter.jsx"
 import { NoteList } from "../cmps/note-list.jsx"
 
@@ -52,7 +53,8 @@ console.log('notes', notes)
 
 <hr />
 
-    <AddNote />
+    {/* <AddNote /> */}
+    <AddNotes />
 
 <hr />
 
