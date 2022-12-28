@@ -17,12 +17,10 @@ export function NoteIndex() {
 
     useEffect(() => {
         loadNotes()
-        console.log('filterBy', filterBy)
     }, [filterBy])
 
     function loadNotes() {
         notesService.query().then(notes => setNotes(notes))
-        console.log('notes2', notes)
     }
 
     function onSetFilter(filterBy) {

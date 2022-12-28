@@ -31,6 +31,7 @@ function DynamicCmp(props) {
 function TextNote({note}){
 
     return <div>
+        <button type="button" className="pin-note">📌</button>
         <p>{note.id}</p>
         <p>{note.type}</p>
         <p>{note.info.txt}</p>
@@ -40,6 +41,7 @@ function TextNote({note}){
 
 function ImgNote({note}){
     return <div>
+        <button type="button" className="pin-note">📌</button>
         <p>{note.id}</p>
         <p>{note.type}</p>
         <p>{note.info.title}</p>
@@ -51,6 +53,7 @@ function ImgNote({note}){
 
 function TodoNote({note}){
     return <div>
+        <button type="button" className="pin-note">📌</button>
         <p>{note.id}</p>
         <p>{note.type}</p>
         <p>{note.lable}</p>
