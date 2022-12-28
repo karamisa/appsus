@@ -1,14 +1,17 @@
 const { Link, Outlet } = ReactRouterDOM
 
-export function MailPreview({ email }) {
-    const { subject, isRead } = email;
-    const subjectClassName = isRead ? 'subject subject-read' : 'subject subject-unread';
+export function MailPreview({ email, onClick}) {
+    const { subject, isRead, body, sentAt, isStared } = email;
+    const previewClassName = isRead ? 'mail-preview read' : 'mail-preview unread';
+    const staredClassName = isStared ? 'mail-preview stared' : 'mail-preview unstared'
     return (
-        <div className="email-preview">
-            <div className={subjectClassName}>
-                {subject.length > 50 ? `${subject.substring(0, 50)}...` : subject}
-                <Link to={`/mail/details/${email.id}`}>Details</Link>
+        <div className={previewClassName}>
+            <div className={staredClassName}>
+                <i class="fa-solid fa-star"></i>
             </div>
+            <div className="subject">{subject}</div>
+            <div className="body">{body.length > 50 ? `${body.substring(0, 50)}...` : body}</div>
+            <div className="date">{sentAt}</div>
         </div>
-    );
-};
+    )
+}

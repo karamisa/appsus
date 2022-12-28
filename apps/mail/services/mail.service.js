@@ -33,7 +33,7 @@ function query(criteria = {}) {
                 emails = emails.filter(email => regex.test(email.body))
             }
             if (criteria.isRead) {
-                emails = emails.filter(email => email.isRead === criteria.isRead)
+                emails = emails.filter(email => email.isRead == JSON.parse(criteria.isRead))
             }
             if (criteria.isStared) {
                 emails = emails.filter(email=> email.isStared === criteria.isStared)
@@ -115,7 +115,7 @@ function _createDemoEmails() {
             id: 'e101',
             subject: 'Miss you!',
             body: 'Would love to catch up sometimes',
-            isRead: false,
+            isRead: true,
             isStared: false,
             sentAt: 1551133930594,
             to: 'user@appsus.com'
@@ -124,7 +124,7 @@ function _createDemoEmails() {
             id: 'e102',
             subject: 'Hello from Paris!',
             body: 'I hope you\'re doing well. I\'m having a great time here in Paris. How about you?',
-            isRead: false,
+            isRead: true,
             isStared: false,
             sentAt: 1551144930000,
             to: 'momo@momo.com'
