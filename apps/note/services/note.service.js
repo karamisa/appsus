@@ -4,7 +4,7 @@ import { storageService } from '../../../services/async-storage.service.js'
 const NOTES_KEY = 'notesDB'
 let gFilterBy = { type: '' }
 
-export const keepService = {
+export const notesService = {
     // getNotes,
     query,
     getNoteById,
@@ -123,7 +123,7 @@ function _createDemoKeepNotes() {
             id: "n102",
             type: "note-img",
             info: {
-                url: "http://some-img/me",
+                url: '../img/bobiandme.png',
                 title: "Bobi and Me"
             },
             style: {
