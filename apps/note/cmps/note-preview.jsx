@@ -3,10 +3,7 @@
 export function NotePreview({note}){
 
 
-function getClassName(){
 
-return "note-review"
-}
 
 
 
@@ -47,11 +44,11 @@ function ImgNote({note}){
         <p>{note.type}</p>
         <p>{note.info.title}</p>
         <p>{note.info.url}</p>
-        <img src={`../img/${note.info.url}.png`} alt={note.info.title} />
+        <img src={`/apps/note/img/${note.info.url}.png`} alt={note.info.title} />
     </div>
 
-{`assets/img/${car.vendor}.png`}
 }
+
 function TodoNote({note}){
     return <div>
         <p>{note.id}</p>
