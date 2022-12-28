@@ -9,8 +9,8 @@ export function NoteList({ notes, onRemoveNote}) {
         notes.map(note => <li key={note.id} className="flex space-between column" >
             <NotePreview note={note}/>
            <section className="btns">
-             <Link className="select-btn btn" to={`/note/details/${note.id}`}></Link>
-           <button className="remove-btn btn" onClick={() => onRemoveBook(note.id)}> </button>          
+             {/* <Link className="select-btn btn" to={`/note/details/${note.id}`}></Link> */}
+           <button className="remove-btn btn" onClick={() => onRemoveNote(note.id)}>delete</button>          
            </section>
         
         </li>)

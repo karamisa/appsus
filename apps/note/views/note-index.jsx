@@ -1,6 +1,7 @@
 const { useState, useEffect } = React
 const {Link} = ReactRouterDOM
 
+import { AddNote } from "../cmps/add-note.jsx"
 import { NoteFilter } from "../cmps/note-filter.jsx"
 import { NoteList } from "../cmps/note-list.jsx"
 
@@ -16,39 +17,46 @@ export function NoteIndex() {
 
     useEffect(() => {
         loadNotes()
+        console.log('filterBy', filterBy)
     }, [filterBy])
 
     function loadNotes() {
-        notesService.query(filterBy).then(notes => setNotes(notes))
+        notesService.query().then(notes => setNotes(notes))
+        console.log('notes2', notes)
     }
 
     function onSetFilter(filterBy) {
+        notesService.setFilterBy(filterBy)
         setFilterBy(filterBy)
     }
 
 
     function onRemoveNote(noteId) {
-        // BooksService.remove(bookId)
-        //     .then(() => {
-        //         const updatedBooks = books.filter(book => book.id !== bookId)
-        //         setBooks(updatedBooks)
-        //         showSuccessMsg('Book Removed!')
-        //     })
-        //     .catch((err) => {
-        //         console.log('Had issues removing', err)
-        //         showErrorMsg('Could not remove book, try again please!')
-        //     })
+        console.log('noteId', noteId)
+        notesService.removeNoteById(noteId)
+            .then(() => {
+                const updatedNotes = notes.filter(note => note.id !== noteId)
+                setNotes(updatedNotes)
+        //         showSuccessMsg('Note Removed!')
+            })
+            .catch((err) => {
+                console.log('Had issues removing', err)
+        //         showErrorMsg('Could not remove note, try again please!')
+            })
     }
 
 
 console.log('notes', notes)
 
-    return <section className="notes-index">note app
+    return <section className="notes-index"> 
     
     <NoteFilter onSetFilter={onSetFilter} />
 
 <hr />
 
+    <AddNote />
+
+<hr />
 
 {notes && < NoteList notes={notes} onRemoveNote={onRemoveNote} />}
        

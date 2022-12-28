@@ -20,11 +20,12 @@ export const notesService = {
 _createNotes()
 
 function query() {
+    console.log('gFilterBy query', gFilterBy)
     return storageService.query(NOTES_KEY)
         .then(notes => {
             if (gFilterBy.type) {
                 // const regex = new RegExp(gFilterBy.txt, 'i')
-                notes = notes.filter(note => note.type = gFilterBy.type)
+                notes = notes.filter(note => note.type === gFilterBy.type)
             }
             // if (gFilterBy.minScore) {
             //     notes = notes.filter(note => note.score >= gFilterBy.minScore)
@@ -99,6 +100,7 @@ function getFilterBy() {
 }
 
 function setFilterBy(filterBy = {}) {
+    console.log('filterBy', filterBy)
     if (filterBy.type !== undefined) gFilterBy.type = filterBy.type
     // if (filterBy.minScore !== undefined) gFilterBy.minScore = filterBy.minScore
     return gFilterBy
