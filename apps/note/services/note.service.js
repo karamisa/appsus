@@ -123,7 +123,7 @@ function _createDemoKeepNotes() {
             id: "n102",
             type: "note-img",
             info: {
-                url: '../img/bobiandme.png',
+                url: 'bobiandme',
                 title: "Bobi and Me"
             },
             style: {

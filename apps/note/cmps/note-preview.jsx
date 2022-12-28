@@ -46,10 +46,11 @@ function ImgNote({note}){
         <p>{note.id}</p>
         <p>{note.type}</p>
         <p>{note.info.title}</p>
-        <img src={note.url} alt={note.info.title} />
+        <p>{note.info.url}</p>
+        <img src={`../img/${note.info.url}.png`} alt={note.info.title} />
     </div>
 
-
+{`assets/img/${car.vendor}.png`}
 }
 function TodoNote({note}){
     return <div>
