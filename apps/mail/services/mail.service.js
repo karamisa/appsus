@@ -9,26 +9,25 @@ let gLoggedinUser = {
     fullname: 'Mahatma Appsus' 
 }
 
-let gFilterby
 _createEmails()
 
 
 
-export const emailService = {
+export const mailService = {
     query,
     get,
     remove,
     save,
     getEmptyEmail,
     getLoggedinUser,
-    setFilterBy,
-    getFilterBy
+    getNextEmailId,
+    getPrevEmailId
 }
 
 
 function query(criteria = {}) {
     return storageService.query(EMAIL_KEY)
-        .then(emails => {    
+        .then(emails => {   
             if (criteria.txt) {
                 const regex = new RegExp(criteria.txt, 'i')
                 emails = emails.filter(email => regex.test(email.body))
@@ -40,6 +39,7 @@ function query(criteria = {}) {
                 emails = emails.filter(email=> email.isStared === criteria.isStared)
             }
             if (criteria.lables) {
+                console.log('here')
                 // check for lables
             }
             return emails
@@ -64,9 +64,23 @@ function save(email) {
     }
 }
 
-function setFilterBy(type){
-    
-}
+function getNextEmailId(emailId) {
+    return storageService.query(EMAIL_KEY)
+      .then(emails => {
+        var idx = emails.findIndex(email => email.id === emailId)
+        if (idx === emails.length - 1) idx = -1
+        return emails[idx + 1].id
+      })
+  }
+  
+  function getPrevEmailId(emailId) {
+    return storageService.query(EMAIL_KEY)
+      .then(emails => {
+        var idx = emails.findIndex(email => email.id === emailId)
+        if (idx === 0) idx = emails.length
+        return emails[idx - 1].id
+      })
+  }
 
 function getEmptyEmail(subject = '', body = ''.isRead = '', sentAt = '', to = '') {
     return {
