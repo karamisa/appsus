@@ -12,9 +12,11 @@ export function MailIndex() {
     const [emails, setEmails] = useState([])
 
     useEffect(() => {
-        console.log(criteria)
         loadEmails()
     }, [criteria])
+
+
+
 
 
     function loadEmails() {
@@ -32,6 +34,20 @@ export function MailIndex() {
         setCriteria((prevCriteria) => ({ ...prevCriteria, txt, isRead }))
     }
 
+    //helpppp
+    function onToggleMailProp(prop, val, emailId) {
+        console.log('here')
+        const emailtoUpdate = emails.find(email => email.id = emailId)
+        
+        const emailtoUpdateIdx = emails.findIndex(email => email.id = emailId)
+        emailtoUpdate[prop]= val 
+        console.log(emailtoUpdate)
+        const emailsToUpdate = emails.map((email) => email)
+        emailsToUpdate[emailtoUpdateIdx]=emailtoUpdate
+        setEmails(emailsToUpdate)
+
+    }
+
     return (
         <section className="mail-index full main-layout">
             <div className="mail-toolbar-container">
@@ -41,7 +57,7 @@ export function MailIndex() {
                 <MailFolderList onChangeFolder={onChangeFolder} />
             </div>
             <div className="mail-body-container">
-                <MailList emails={emails} />
+                <MailList emails={emails} onToggleMailProp={onToggleMailProp} />
                 <div className="mail-compose-container">
                     <Outlet />
                 </div>
@@ -50,4 +66,5 @@ export function MailIndex() {
 
         </section>
     )
+
 }
