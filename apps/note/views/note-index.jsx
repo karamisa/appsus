@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const {Link} = ReactRouterDOM
+const { Link } = ReactRouterDOM
 
 import { AddNote } from "../cmps/add-note.jsx"
 import { AddNotes } from "../cmps/add-notes.jsx"
@@ -12,8 +12,8 @@ import { notesService } from "../services/note.service.js"
 export function NoteIndex() {
 
     const [notes, setNotes] = useState([])
-    const [filterBy , setFilterBy] = useState(notesService.getFilterBy())
-//the set filter should be determined by type
+    const [filterBy, setFilterBy] = useState(notesService.getFilterBy())
+    //the set filter should be determined by type
 
 
     useEffect(() => {
@@ -36,30 +36,42 @@ export function NoteIndex() {
             .then(() => {
                 const updatedNotes = notes.filter(note => note.id !== noteId)
                 setNotes(updatedNotes)
-        //         showSuccessMsg('Note Removed!')
+                //         showSuccessMsg('Note Removed!')
             })
             .catch((err) => {
                 console.log('Had issues removing', err)
-        //         showErrorMsg('Could not remove note, try again please!')
+                //         showErrorMsg('Could not remove note, try again please!')
             })
     }
 
+    function onNoteClicked(noteId) {
+        console.log('noteId', noteId)
+    }
 
-console.log('notes', notes)
+function saveChanges(text, noteId){//handles a change in text note
+    console.log('text', text)
+    console.log('noteId', noteId)
+    const updatedNote = notes.find(note => note.id === noteId)
+    updatedNote.info.txt = text
+    notesService.save(updatedNote)
+}
 
-    return <section className="notes-index"> 
-    
-    <NoteFilter onSetFilter={onSetFilter} />
 
-<hr />
+    console.log('notes', notes)
 
-    {/* <AddNote /> */}
-    <AddNotes />
+    return <section className="notes-index">
 
-<hr />
+        <NoteFilter onSetFilter={onSetFilter} />
 
-{notes && < NoteList notes={notes} onRemoveNote={onRemoveNote} />}
-       
+        <hr />
+
+        {/* <AddNote /> */}
+        <AddNotes />
+
+        <hr />
+
+        {notes && < NoteList notes={notes} onRemoveNote={onRemoveNote} onNoteClicked ={onNoteClicked} saveChanges={saveChanges}/>}
+
 
 
     </section>

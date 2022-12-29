@@ -1,19 +1,17 @@
 
-
-export function NotePreview({note}){
-
+export function NotePreview({ note, onNoteClicked, onRemoveNote, saveChanges}) {
 
 
+    return <li key={note.id} className="flex space-between column" onClick={() => onNoteClicked(note.id)}>
+        <DynamicCmp type={note.type} note={note} saveChanges={saveChanges}/>
+        <section className="btns">
+            <button className="remove-btn btn" onClick={() => onRemoveNote(note.id)}>delete</button>
+        </section>
+    </li >
 
-
-
-return <article className="note-preview">
-    <div>
-        <DynamicCmp type={note.type} note={note}/>
-    </div>
-    </article>
 
 }
+
 
 
 function DynamicCmp(props) {
@@ -28,18 +26,18 @@ function DynamicCmp(props) {
 }
 
 
-function TextNote({note}){
+function TextNote({ note, saveChanges }) {
 
     return <div>
         <button type="button" className="pin-note">📌</button>
         <p>{note.id}</p>
         <p>{note.type}</p>
-        <p>{note.info.txt}</p>
+        <p contentEditable='true' onBlur={(ev)=>saveChanges(ev.currentTarget.textContent, note.id)} >{note.info.txt}</p>
     </div>
 
 }
 
-function ImgNote({note}){
+function ImgNote({ note }) {
     return <div>
         <button type="button" className="pin-note">📌</button>
         <p>{note.id}</p>
@@ -51,16 +49,16 @@ function ImgNote({note}){
 
 }
 
-function TodoNote({note}){
+function TodoNote({ note }) {
     return <div>
         <button type="button" className="pin-note">📌</button>
         <p>{note.id}</p>
         <p>{note.type}</p>
         <p>{note.lable}</p>
         <ul className="todo-list">
-        <li>get li map here</li>
+            <li>get li map here</li>
         </ul>
-        
+
     </div>
 
 

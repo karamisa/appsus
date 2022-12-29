@@ -6,18 +6,19 @@ export function AddNotes() {
     const [noteType, setNoteType] = useState('note-txt')
     const [value, setValue] = useState('')
     const [placeholder, setPlaceholder] = useState('Enter new note here...')
-    const [newNote, setNote] = useState(notesService.createEmptyNote())
+    const [fieldName, setFieldName] = (useState('info.txt'))
+    // const [newNote, setNote] = useState(notesService.createEmptyNote())
+
 
     useEffect(() => {
-        setNote()
     }, [noteType])
 
 
     function onSelectType(noteType) {
         console.log('noteType', noteType)
         const newType = noteType
-        setNoteType(newType)
-        getPlaceholder(newType)
+        // setNoteType(newType)
+        setPlaceholder(getPlaceholder(newType))
     }
 
 
@@ -26,27 +27,35 @@ export function AddNotes() {
         addNote()
     }
 
-    function addNote(ev) {
-        ev.preventDefault()
+    function addNote() {
+   
+        notesService.createNote(value.newNoteValue, noteType)
+        // setNote(notesService.createEmptyNote())
+        // console.log('newNote', newNote)
+        // newNote.type = noteType
+
     }
 
 
 
     function handleChange({ target }) {
-        // let { value, name: field, type } = target
+        let { name: field } = target
+        // let { value, name: field } = target
         console.log('target.value', target.value)
         // value = (type === 'number') ? +value : value
         // setFilterByToEdit(prevFilter => {
         //     return { ...prevFilter, [field]: value }
         // })
         // console.log('value', value)
-        // console.log('field', field)
+        console.log('field', field)
         // console.log('type', type)
-        // setNoteInfoToEdit((prevNote) => ({ ...prevNote, [field]: value }))
+        setValue((prevNote) => ({ ...prevNote, [field]: target.value }))
+
+        console.log('value', value)
     }
 
 
-   
+
 
     function setButtons() {
         const buttonsIcons = [
@@ -80,17 +89,17 @@ export function AddNotes() {
                 <form onSubmit={onSubmitNote}>
                     <input
                         type="text"
-                        name="value"
-                        value={value}
+                        name="newNoteValue"
+                        // value={value}
                         placeholder={placeholder}
                         onChange={handleChange}
                         onBlur={addNote} />
+                </form>
                     <div className="buttons">
                         {setButtons()}
                     </div>
                     {/* <button>Save</button> */}
                     <button type="button">Cancel</button>
-                </form>
             </div>
         </section>
 

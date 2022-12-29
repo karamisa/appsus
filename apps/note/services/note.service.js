@@ -145,7 +145,7 @@ function createEmptyNote(){
 
 function createNote(value, type) { //use this one
     let notes = utilService.loadFromStorage(NOTES_KEY)
-    const infoKey = getInfoKeyByType(type)
+    const infoKey = _setInfoByType(type)
 
     let note = {
         id: utilService.makeId(),
@@ -162,6 +162,7 @@ function createNote(value, type) { //use this one
     if (type === 'note-todos') note.info.todos = []
     notes.unshift(note);
     utilService.saveToStorage(NOTES_KEY, notes)
+    return note.id
 }
 
 function _setInfoByType(type) {
