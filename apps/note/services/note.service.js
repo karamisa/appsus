@@ -3,6 +3,7 @@ import { storageService } from '../../../services/async-storage.service.js'
 
 const NOTES_KEY = 'notesDB'
 let gFilterBy = { type: '' }
+_createNotes()
 
 export const notesService = {
     // getNotes,
@@ -10,17 +11,13 @@ export const notesService = {
     getNoteById,
     removeNoteById,
     save,
-    getEmptyNote,
-    getNewEmptyNotes,
-    createEmptyNote,
-    createNote,
+    getNewEmptyNote,
     getNextNoteId,
     getPrevNoteId,
     setFilterBy,
     getFilterBy,
 }
 
-_createNotes()
 
 function query() {
     // console.log('gFilterBy query', gFilterBy)
@@ -37,7 +34,6 @@ function query() {
         })
 }
 
-
 function getNoteById(id) {
     return storageService.get(NOTES_KEY, id)
 }
@@ -47,62 +43,57 @@ function removeNoteById(id) {
 }
 
 function save(note) { //add if not empty?
-    if (note.id) {
-        return storageService.put(NOTES_KEY, note) //change to update?
+    if (note.id && !note._id) {
+        return storageService.put(NOTES_KEY, note) 
     } else {
         return storageService.post(NOTES_KEY, note)
     }
 }
 
-function getEmptyNote(type = 'note-txt', backgroundColor = '#ffffff') {
-    const emptyItem = _setInfoType(type)
-    // return { id: '', vendor, maxSpeed }
-    return { id: '', type, info, backgroundColor }
-}
-
-
-function getNewEmptyNotes(type) {
+function getNewEmptyNote(type='note-txt',value='') {
     let emptyItem = {}
     switch (type) {
         case 'note-txt':
             emptyItem = {
+                id:'',
                 type: 'note-txt',
                 isPinned: false,
                 info: {
                     title: '',
-                    txt: '',
+                    txt: value,
                 },
                 style: {
-                    backgroundColor: '#ffffff'
+                    backgroundColor: 'blue'
                 }
              }
             break
         case 'note-img':
             emptyItem = {
+                id:'',
                 type: 'note-img',
                 isPinned: false,
                 info: {
                     title: '',
-                    url: '',
+                    url: value,
                 },
                 style: {
-                    backgroundColor: '#ffffff'
+                    backgroundColor: 'skyblue'
                 }
              }
             break
         case 'note-todos':
             emptyItem = {
-                type: 'note-todo',
+                id:'',
+                type: 'note-todos',
                 isPinned: false,
                 info: {
-                    lable: '',
-                    title: '',
+                    title: value, 
                     todos:[
                         {txt:'' , doneAt: null}
                     ]
                 },
                 style: {
-                    backgroundColor: '#ffffff'
+                    backgroundColor: 'red'
                 }
              }
             break
@@ -110,111 +101,22 @@ function getNewEmptyNotes(type) {
     return emptyItem
 }
 
-function _setInfoType(type) {
-    let emptyItem = {}
-    switch (type) {
-        case 'note-txt':
-            emptyItem = { txt: '' }
-            break
-        case 'note-img':
-            emptyItem = { url: '' }
-            break
-        case 'note-todos':
-            emptyItem = { todos: [getNewTodo()] }
-            break
-    }
-    return emptyItem
-}
-
-function getNewTodo() {
-    return emptyTodo = { txt: '', done: null, id: utilService.makeId() }
-}
-
-
-function createEmptyNote(){
-    return {
-        type: '',
-        isPinned: false,
-        info: {},
-        style: {
-            backgroundColor: '#ffffff',
-        }
-    }
-}
-
-
-// function createNote(value, type) { //use this one
-//     let notes = utilService.loadFromStorage(NOTES_KEY)
-//     const infoKey = _setInfoByType(type)
-
-//     let note = {
-//         id: utilService.makeId(),
-//         type: type,
-//         isPinned: false,
-//         info: {
-//             [infoKey]: value,
-//         },
-//         style: {
-//             backgroundColor: '#ffffff',
-//         }
-
-//     }
-//     if (type === 'note-todos') note.info.todos = []
-//     notes.unshift(note);
-//     utilService.saveToStorage(NOTES_KEY, notes)
-//     return note.id
-// }
-
-function createNote(value,type){
-    const infoKey= _setInfoByType(type)
-    return {id:'', type: type, info:{[infoKey]: value}, style:{backgroundColor:'#fffff'}}
-}
-
-function _setInfoByType(type) {
-     switch (type) {
-        case 'note-txt':
-            return 'txt'
-        case 'note-img':
-            return 'url'
-        case 'note-todos':
-            return 'title'
-    }
-}
-
-
-function addTodo(value, noteId) {
-    let notes = utilService.loadFromStorage(NOTES_KEY)
-    let noteIdx = notes.findIndex(note => note.id === noteId)
-    notes[noteIdx].info.todos.unshift(_createTodo(value))
-    utilService.saveToStorage(NOTES_KEY, notes)
-    // return Promise.resolve()
-}
-
-function _createTodo(txt) {
-    return {
-        id: utilService.makeId(),
-        txt,
-        isDone: false,
-    }
-}
-
-
 function getNextNoteId(noteId) {
     return storageService.query(NOTES_KEY)
-        .then(notes => {
-            var idx = notes.findIndex(note => note.id === noteId)
-            if (idx === notes.length - 1) idx = -1
-            return notes[idx + 1].id
-        })
+    .then(notes => {
+        var idx = notes.findIndex(note => note.id === noteId)
+        if (idx === notes.length - 1) idx = -1
+        return notes[idx + 1].id
+    })
 }
 
 function getPrevNoteId(noteId) {
     return storageService.query(NOTES_KEY)
-        .then(notes => {
-            let idx = notes.findIndex(note => note.id === noteId)
-            if (idx === 0) idx = notes.length - 0
-            return notes[idx - 1].id
-        })
+    .then(notes => {
+        let idx = notes.findIndex(note => note.id === noteId)
+        if (idx === 0) idx = notes.length - 0
+        return notes[idx - 1].id
+    })
 }
 
 function getFilterBy() {
@@ -228,56 +130,82 @@ function setFilterBy(filterBy = {}) {
     return gFilterBy
 }
 
-function _save(entityType, entities) {
-    localStorage.setItem(entityType, JSON.stringify(entities))
-}
-
 function _createDemoKeepNotes() {
-
+    
     const notes = [
         {
             id: "n101",
             type: "note-txt",
             isPinned: true,
             info: {
+                title: 'NOTES!!!!',
                 txt: "Fullstack Me Baby!"
+            },
+            style: {
+                backgroundColor: 'rgb(235 100 30)'
             }
         },
         {
             id: "n102",
             type: "note-img",
+            isPinned:true,
             info: {
-                url: 'bobiandme',
+                url: `/apps/note/img/bobiandme.png`,
                 title: "Bobi and Me"
             },
             style: {
-                backgroundColor: "#00d"
+                backgroundColor: 'rgb(235 125 125)'
             }
         },
         {
-            id: "n103",
+            id:'n104',
             type: "note-todos",
+            isPinned:false,
             info: {
-                label: "Get my stuff together",
+                title: "Get my stuff together",
                 todos: [
                     { txt: "Driving liscence", doneAt: null },
                     { txt: "Coding power", doneAt: 187111111 }
                 ]
+            },
+            style: {
+                backgroundColor: 'rgb(40 67 299)'
             }
         }
     ]
-
+    
     utilService.saveToStorage(NOTES_KEY, notes)
-
+    
 }
 
-function _createNotes() {  //takes notes from sotrage. if there aren't any. create and add to sotrage.
-
+function _createNotes() {
+    
     let notesDB = utilService.loadFromStorage(NOTES_KEY)
     if (!notesDB || !notesDB.length) {
         _createDemoKeepNotes()
-        // _save(NOTES_KEY, notesDB)
-        // return notesDB
     }
+    
+}
 
+function getNewTodo() {
+    return emptyTodo = { txt: '', done: null, id: utilService.makeId() }
+}
+
+function _setInfoByType(type) {
+     switch (type) {
+        case 'note-txt':
+            return 'txt'
+        case 'note-img':
+            return 'url'
+        case 'note-todos':
+            return 'title'
+    }
+}
+
+function _createTodo(txt) {
+    return {
+        id: utilService.makeId(),
+        txt,
+        isDone: false,
+    }
 }
