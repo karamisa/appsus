@@ -2,7 +2,7 @@ const { NavLink } = ReactRouterDOM
 
 export function MailFolderList({ onChangeFolder }) {
     return (
-        <div className="mail-folder-list">
+        <section className="mail-folder-list">
             <NavLink
                 className="compose-btn"
                 to="/mail/compose"
@@ -14,7 +14,7 @@ export function MailFolderList({ onChangeFolder }) {
                 onClick={() => onChangeFolder('inbox')}
             >
 
-                <div className="folder-icon">
+                <div className="folder-icon" label="Inbox">
                     <i className="fas fa-inbox"></i>
                     Inbox
                 </div>
@@ -47,6 +47,6 @@ export function MailFolderList({ onChangeFolder }) {
                     Drafts
                 </div>
             </div>
-        </div>
-    );
+        </section>
+    )
 }

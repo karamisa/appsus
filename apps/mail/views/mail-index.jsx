@@ -57,15 +57,17 @@ export function MailIndex() {
                 </div>
                 <MailFilter onChangeFilter={onChangeFilter} />
             </div>
-            <div className='mail-folder-list-container'>
+            <section className="mail-app flex">
+            {/* <div className='mail-folder-list-container'> */}
                 <MailFolderList onChangeFolder={onChangeFolder} />
-            </div>
+            {/* </div> */}
             <div className="mail-body-container">
                 <MailList emails={emails} onToggleMailProp={onToggleMailProp} />
                 <div className="mail-compose-container">
                     <Outlet />
                 </div>
             </div>
+            </section>
 
 
         </section>
