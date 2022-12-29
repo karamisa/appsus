@@ -8,7 +8,7 @@ import { MailFolderList } from '../cmps/mail-folder-list.jsx'
 import { mailService } from './../services/mail.service.js';
 
 export function MailIndex() {
-    const [criteria, setCriteria] = useState({})
+    const [criteria, setCriteria] = useState({status: 'inbox'})
     const [emails, setEmails] = useState([])
 
     useEffect(() => {
@@ -34,23 +34,27 @@ export function MailIndex() {
         setCriteria((prevCriteria) => ({ ...prevCriteria, txt, isRead }))
     }
 
-    //helpppp
-    function onToggleMailProp(prop, val, emailId) {
-        console.log('here')
-        const emailtoUpdate = emails.find(email => email.id = emailId)
-        
-        const emailtoUpdateIdx = emails.findIndex(email => email.id = emailId)
-        emailtoUpdate[prop]= val 
-        console.log(emailtoUpdate)
-        const emailsToUpdate = emails.map((email) => email)
-        emailsToUpdate[emailtoUpdateIdx]=emailtoUpdate
-        setEmails(emailsToUpdate)
 
-    }
+    function onToggleMailProp(prop, val, emailId) {
+        const emailtoUpdate = emails.find(email => email.id === emailId)
+        const emailtoUpdateIdx = emails.findIndex(email => email.id === emailId)
+        emailtoUpdate[prop]= val 
+        const emailsToUpdate = emails.map((email,idx) => {
+            return (idx=== emailtoUpdateIdx) ? emailtoUpdate: email
+        })
+        setEmails(emailsToUpdate)
+        mailService.save(emailtoUpdate).then((email) => {
+            console.log(email)
+            setCriteria((prevCriteria)=> ({...prevCriteria}))
+    })
+}
 
     return (
         <section className="mail-index full main-layout">
             <div className="mail-toolbar-container">
+                <div>
+                    logo
+                </div>
                 <MailFilter onChangeFilter={onChangeFilter} />
             </div>
             <div className='mail-folder-list-container'>

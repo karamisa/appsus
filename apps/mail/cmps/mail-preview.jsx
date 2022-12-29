@@ -1,28 +1,41 @@
-const { Link, Outlet } = ReactRouterDOM
+
 
 export function MailPreview({ email, onToggleMailProp }) {
-    const { subject, isRead, body, sentAt, isStared } = email;
-    const previewClassName = isRead ? 'mail-preview read' : 'mail-preview unread';
-    const staredClassName = isStared ? 'mail-preview stared' : 'mail-preview unstared'
+
+    function onHandleToggleIsRead(){
+        onToggleMailProp('isRead', !email.isRead, email.id)
+    }
+
+    function onHandleToggleIsStared(){
+        {onToggleMailProp('isStared', !email.isStared, email.id)}
+    }
+
+    function onHandleRemove() {
+        {onToggleMailProp('removedAt', Date.now(), email.id)}
+    }
+
+    let readClassName = email.isRead ? "fa-regular fa-envelope-open" : "fa-regular fa-envelope"
+    const staredClassName = email.isStared ? "fa-regular fa-star" :  "fa-solid fa-star"
     return (
-        <div key = {email.id}>
-            <div  className={staredClassName} onClick={() => { onToggleMailProp('isStared', !isStared, email.id) }}>
-                {isStared && <i className="fa-solid fa-star"></i>}
-                {!isStared && <i className="fa-regular fa-star"></i>}
+        <div>
+            <div onClick={() => onHandleToggleIsStared()}>
+                 <i className={staredClassName}></i>
+
             </div>
-            <div className="subject">{subject}</div>
+            <div className="subject">{email.subject}</div>
             <div className="body">
                 {/* {body.length > 50 ? `${body.substring(0, 50)}...` : body} */}
-                {body}
+                {email.body}
             </div>
-            <div className="date">sentAt: {sentAt}</div>
-            <div className="preview-btn" onClick={() => {onToggleMailProp('isRead', !isRead, email.id)}}>
-                {isRead && <i className="fa-regular fa-envelope"></i>}
-                {!isRead && <i className="fa-regular fa-envelope-open"></i>}
+            <div className="date">sentAt: {email.sentAt}</div>
+            <div onClick={() => onHandleToggleIsRead()}>
+                <i className={readClassName}> </i>
             </div>
-            <div className="preview-btn">
+            <div className="preview-btn" onClick={()=>onHandleRemove()}>
                 <i className="fas fa-trash-alt"></i>
             </div>
         </div>
     )
 }
+
+//Sent the 

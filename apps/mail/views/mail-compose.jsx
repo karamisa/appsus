@@ -1,48 +1,82 @@
-const { useState } = React
+import { mailService } from "../services/mail.service.js"
+
+const { useState, useEffect, useRef } = React
+const { useNavigate } = ReactRouterDOM
 
 export function MailCompose() {
-  const [to, setTo] = useState('')
-  const [subject, setSubject] = useState('')
-  const [body, setBody] = useState('')
+  const [email, setEmail] = useState(mailService.getEmptyEmailToSend())
+  const navigate = useNavigate()
 
-  const handleSubmit = (event) => {
+  // useEffect(()=>{
+  //   mailService.save(email)
+  //   let intervalID= setInterval(()=>{
+  //     mailService.save(email).then(console.log)
+  //   },2000)
+  //   return () => {clearInterval(intervalID)}
+  // },[])
+
+
+  function onCloseCompose(){
+    navigate('/mail')
+  }
+
+
+
+  function handleChange({ target }) {
+    let { value, type, name: field } = target
+    value = type === 'number' ? +value : value
+    setEmail((prevEmail) => ({ ...prevEmail, [field]: value }))
+  }
+
+
+
+  function handleSubmit(event) {
     event.preventDefault();
-    //mailservice add email
+    email.sentAt = Date.now()
+    mailService.save(email).then(() => setEmail(mailService.getEmptyEmailToSend()))
+
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mail-compose">
-      <div className="compose-header">
-        <label htmlFor="to" className="compose-label">To:</label>
+    <section className="mail-compose">
+            <div className="compose-header">
+              <button onClick={()=> onCloseCompose()}>X</button>
+            </div>
+      <form onSubmit={handleSubmit} className="flex column">
+        <label htmlFor="to" className="compose-label">To:
         <input
           type="text"
+          name='to'
+          required
           id="to"
-          value={to}
-          onChange={(event) => setTo(event.target.value)}
+          value={email.to}
+          onChange={(e) => handleChange(e)}
           className="compose-input"
-        />
-      </div>
-      <div className="compose-header">
-        <label htmlFor="subject" className="compose-label">Subject:</label>
+        /></label>
+        <label htmlFor="subject" className="compose-label">Subject:
         <input
           type="text"
+          name='subject'
+          required
           id="subject"
-          value={subject}
-          onChange={(event) => setSubject(event.target.value)}
+          value={email.subject}
+          onChange={(e) => handleChange(e)}
           className="compose-input"
-        />
-      </div>
-      <div className="compose-body">
-        <label htmlFor="body" className="compose-label">Body:</label>
+        /></label>
+        <label htmlFor="body" className="compose-label">Body:
         <textarea
           id="body"
-          value={body}
-          onChange={(event) => setBody(event.target.value)}
+          required
+          name='body'
+          value={email.body}
+          onChange={(e) => handleChange(e)}
           className="compose-textarea"
-        />
-      </div>
-      <button type="submit" className="compose-button">Send</button>
-    </form>
+        /></label>
+
+      </form>
+        <button type="submit" className="compose-button">Send</button>
+
+    </section >
   )
 }
 
