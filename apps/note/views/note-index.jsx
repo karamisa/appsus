@@ -57,6 +57,13 @@ function saveChanges(text, noteId){//handles a change in text note
 }
 
 
+function onAddNote({target}){
+    console.log('here')
+    const {name, value} = target
+    const newNote= notesService.createNote(name,value)
+    setNotes((prevNotes)=> newNote.concat(prevNotes))
+}
+
     console.log('notes', notes)
 
     return <section className="notes-index">
@@ -66,7 +73,7 @@ function saveChanges(text, noteId){//handles a change in text note
         <hr />
 
         {/* <AddNote /> */}
-        <AddNotes />
+        <AddNotes onAddNote={onAddNote}/>
 
         <hr />
 

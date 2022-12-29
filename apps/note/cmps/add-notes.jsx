@@ -1,7 +1,7 @@
 const { useState, useEffect } = React
 import { notesService } from "../services/note.service.js"
 
-export function AddNotes() {
+export function AddNotes({onAddNote}) {
 
     const [noteType, setNoteType] = useState('note-txt')
     const [value, setValue] = useState('')
@@ -24,7 +24,7 @@ export function AddNotes() {
 
     function onSubmitNote(ev) {
         ev.preventDefault()
-        addNote()
+        onAddNote()
     }
 
     function addNote() {
@@ -89,11 +89,11 @@ export function AddNotes() {
                 <form onSubmit={onSubmitNote}>
                     <input
                         type="text"
-                        name="newNoteValue"
+                        name={noteType}
                         // value={value}
                         placeholder={placeholder}
                         onChange={handleChange}
-                        onBlur={addNote} />
+                        onBlur={(event)=> onAddNote(event)} />
                 </form>
                     <div className="buttons">
                         {setButtons()}

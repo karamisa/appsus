@@ -143,26 +143,31 @@ function createEmptyNote(){
 }
 
 
-function createNote(value, type) { //use this one
-    let notes = utilService.loadFromStorage(NOTES_KEY)
-    const infoKey = _setInfoByType(type)
+// function createNote(value, type) { //use this one
+//     let notes = utilService.loadFromStorage(NOTES_KEY)
+//     const infoKey = _setInfoByType(type)
 
-    let note = {
-        id: utilService.makeId(),
-        type: type,
-        isPinned: false,
-        info: {
-            [infoKey]: value,
-        },
-        style: {
-            backgroundColor: '#ffffff',
-        }
+//     let note = {
+//         id: utilService.makeId(),
+//         type: type,
+//         isPinned: false,
+//         info: {
+//             [infoKey]: value,
+//         },
+//         style: {
+//             backgroundColor: '#ffffff',
+//         }
 
-    }
-    if (type === 'note-todos') note.info.todos = []
-    notes.unshift(note);
-    utilService.saveToStorage(NOTES_KEY, notes)
-    return note.id
+//     }
+//     if (type === 'note-todos') note.info.todos = []
+//     notes.unshift(note);
+//     utilService.saveToStorage(NOTES_KEY, notes)
+//     return note.id
+// }
+
+function createNote(value,type){
+    const infoKey= _setInfoByType(type)
+    return {id:'', type: type, info:{[infoKey]: value}, style:{backgroundColor:'#fffff'}}
 }
 
 function _setInfoByType(type) {
