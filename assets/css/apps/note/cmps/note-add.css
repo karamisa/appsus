@@ -1,0 +1,76 @@
+.add-note{
+    width: 80%;
+}
+.add-note form {
+    width: 100%;
+    padding: 15px;
+    margin: 1em auto;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.add-note form input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #ddd;
+}
+
+.add-note form input:focus {
+    outline: none;
+    border-bottom-color: #2196f3;
+}
+
+.add-note form .add-btn {
+    background-color: #2196f3;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-note form .add-btn:hover {
+    background-color: #0b7dda;
+}
+
+.form-menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1em;
+}
+
+.add-options {
+    display: flex;
+    padding:10px;
+    align-items: center;
+}
+
+.add-options .button-type>*{
+    padding: 1em;
+    background: padding-box;
+    color: #202124;
+    opacity: .7;
+    transition: opacity 0.2s ease-in-out;
+}
+
+
+.add-options .button-type>*:hover {
+    cursor: pointer;
+    opacity: 1;
+    background-color: rgba(95,99,104,0.157);;
+    border-radius: 2em;
+}
+
+.add-options .button-type .active{
+    color: #0b7dda;
+    opacity: 1;
+}
+
+.add-options .button-type .fa-youtube.active{
+    color: #f00;
+}

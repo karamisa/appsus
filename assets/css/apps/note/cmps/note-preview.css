@@ -11,6 +11,7 @@
 
 .note-preview h4 {
     font-size: 1.3em;
+    margin-bottom: 1em;
 }
 .note-preview img {
     max-width: 100%;
@@ -18,4 +19,91 @@
     border-radius: 3px;
     margin:0 auto;
     margin-bottom: 10px;
+}
+
+.next-todo-input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    height: 1.5em;
+    padding-left: 5px;
+    margin-top: 0.1em;
+}
+
+.todo-list-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo-list-item i {
+    cursor: pointer;
+}
+
+.todo-complete {
+    text-decoration: line-through;
+}
+
+.note-preview {
+    position: relative;
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    vertical-align: baseline;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+
+.note-menu-btn {
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    height: 2em;
+    font-size: 1.25em;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.note-menu-btn i {
+    padding: 10px 10px;
+}
+.note-menu-btn i:hover{
+    box-shadow: 0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 15%);
+    background-color: rgb(66 133 244 / 20%);
+}
+
+.note-menu {
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-inline-end: 0.5em;
+}
+
+.note-menu-btn i{
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+.note-preview:hover .note-menu .note-menu-btn i{
+    opacity: 1;
+}
+
+.note-color-btn-container{
+    position: relative;
+}
+.note-color-btn-container:hover>:last-child{
+    display: flex;
+}
+
+ .pin-yellow {
+    color: yellow;
+    opacity: 1 !important;
 }

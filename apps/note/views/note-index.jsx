@@ -48,31 +48,32 @@ export function NoteIndex() {
         console.log('noteId', noteId)
     }
 
-    function saveChanges(info, noteId) {//handles a change in text note
-        const updatedNote = notes.find(note => note.id === noteId)
-        updatedNote.info = info
-        notesService.save(updatedNote)
-    }
+    function saveChanges(field, value, noteId) {//handles a change in text note
+        console.log(value)
+        const noteToUpdate = notes.find(note => note.id === noteId)
+        const updatedNote = {...noteToUpdate, [field]: value}
+        console.log(updatedNote)
+        const idx = notes.findIndex(note => note.id===noteId)
+        const updatedNotes = notes.map((note,noteIdx)=> (noteIdx===idx) ? updatedNote : note )
+        setNotes(updatedNotes)
+        notesService.save(updatedNote).then((updatedNote)=>{
+            console.log(updatedNote)
+            })
+        }
+          
 
-
-    function onAddNote(name, value) {
-        const newNote = notesService.getNewEmptyNote(name, value)
-        notesService.save(newNote).then((note) => {
-            setNotes((prevNotes) => [note, ...prevNotes])
-        })
-        console.log(newNote)
+    function onAddNote(name, title, value) {
+        const newNote = notesService.getNewEmptyNote(name, title, value)
+        setNotes((prevNotes) => [newNote, ...prevNotes])
+        notesService.save(newNote)
     }
 
 
 
     return <section className="notes-index">
-        <header>
-            <div>LOGO</div>
-            <div>NAV</div>
-        </header>
         <section className='notes-app main-content'>
-            <NoteFilter onSetFilter={onSetFilter} />
             <AddNotes onAddNote={onAddNote} />
+            <NoteFilter onSetFilter={onSetFilter} />
             {notes && < NoteList notes={notes} onRemoveNote={onRemoveNote} onNoteClicked={onNoteClicked} saveChanges={saveChanges} />}
         </section>
     </section>

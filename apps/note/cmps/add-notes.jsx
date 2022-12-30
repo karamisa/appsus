@@ -1,50 +1,52 @@
-const { useState, useEffect } = React
-import { notesService } from "../services/note.service.js"
+const { useState } = React
 
 export function AddNotes({ onAddNote }) {
 
     const [noteType, setNoteType] = useState('note-txt')
+    const [title, setTitle] = useState('')
     const [value, setValue] = useState('')
-    const [placeholder, setPlaceholder] = useState('Enter new note here...')
 
     function onSelectType(noteType) {
         setNoteType(noteType)
-        setButtons(noteType)
-        setPlaceholder(getPlaceholder(noteType))
         setValue('')
     }
 
     function onSubmitNote(ev) {
         ev.preventDefault()
-        if (ev.target.value!=='') {
-            console.log()
-            onAddNote(ev.target[0].name, ev.target[0].value)
+        if (value !== '') {
+            onAddNote(noteType, title, value)
             setValue('')
-    }}
+            setTitle('')
+        }
+    }
 
 
     function handleChange({ target }) {
-        let { value } = target
-        setValue(value)
+        let { value, name } = target
+        if (name === noteType) setValue(value)
+        if (name === 'title') setTitle(value)
+
     }
 
-    function handleBlur(ev){
-        if (ev.target.value!=='') {
-            console.log(ev.target.name, ev.target.value)
-        onAddNote(ev.target.name, ev.target.value)
-        setValue('')
-    }
-}
-
+    // function onBlur(e) {
+    //     console.log(e)
+    //     if (e.target.name !== 'title') {
+    //         if (value !== '') {
+    //             onAddNote(noteType, title, value)
+    //             setValue('')
+    //             setTitle('')
+    //         }
+    //     }
+    // }
 
     function setButtons(noteType) {
         const buttonsIcons = [
-            <i onClick={() => onSelectType('note-txt')} className={`far fa-sticky-note ${(noteType === 'note-txt') ? 'active' : ''}`}></i>,
-            // <i onClick={() => onSelectType('note-video')} className={`fab fa-youtube ${(noteType === 'note-video') ? 'active' : ''} `}></i>,
-            <i onClick={() => onSelectType('note-img')} className={`far fa-images ${(noteType === 'note-img') ? 'active' : ''}`}></i>,
-            <i onClick={() => onSelectType('note-todos')} className={`far fa-list-alt ${(noteType === 'note-todos') ? 'active' : ''}`}></i>]
-        const buttons = buttonsIcons.map((icon, idx) => <button
-            className="button-type" key={idx} >{icon}</button>)
+            <i onClick={() => onSelectType('note-txt')} className={(noteType === 'note-txt') ? 'far fa-sticky-note active' : 'far fa-sticky-note'}></i>,
+            <i onClick={() => onSelectType('note-video')} className={(noteType === 'note-video') ? 'fab fa-youtube active' : 'fab fa-youtube'}></i>,
+            <i onClick={() => onSelectType('note-img')} className={(noteType === 'note-img') ? 'far fa-images active' : 'far fa-images'}></i>,
+            <i onClick={() => onSelectType('note-todos')} className={(noteType === 'note-todos') ? 'far fa-list-alt active' : 'far fa-list-alt'}></i>]
+        const buttons = buttonsIcons.map((icon, idx) => <div
+            className="button-type" key={idx} >{icon}</div>)
         return buttons
     }
 
@@ -54,35 +56,35 @@ export function AddNotes({ onAddNote }) {
                 return 'Enter new note here...'
             case 'note-img':
                 return 'Enter image url...'
-            // case 'note-video':
-            //     return 'Enter video url...'
+            case 'note-video':
+                return 'Enter Youtube url...'
             case 'note-todos':
-                return 'Enter Todo title here...'
+                return 'Enter todo here...'
         }
     }
 
-    return <div>
-        <h2>Add notes take</h2>
+    return (
         <section className="add-note">
-            <div className="add-input">
-                <form onSubmit={onSubmitNote}>
-                    <input
-                        type="text"
-                        value={value}
-                        name={noteType}
-                        placeholder={placeholder}
-                        onChange={handleChange}
-                        onBlur={(event) => handleBlur(event)} />
-                        <button>Add</button>
-                </form>
-                <div className="buttons">
-                    {setButtons()}
+            <form onSubmit={onSubmitNote} name='add-note-form'>
+                <input
+                    type="text"
+                    value={title}
+                    name='title'
+                    placeholder='Title'
+                    onChange={handleChange} />
+                <input
+                    type="text"
+                    value={value}
+                    name={noteType}
+                    placeholder={getPlaceholder(noteType)}
+                    onChange={handleChange} />
+                <div className="form-menu">
+                    <div className='add-options'>
+                        {setButtons(noteType)}
+                    </div>
+                    <button className='add-btn' onClick={onSubmitNote}>Add</button>
                 </div>
-                {/* <button>Save</button> */}
-                {/* <button type="button">Cancel</button> */}
-            </div>
+            </form>
         </section>
-
-
-    </div>
+    )
 }
