@@ -9,6 +9,7 @@
     border-radius: 20px;
 }
 
+
 .add-note form input {
     width: 100%;
     padding: 12px 20px;
@@ -18,10 +19,18 @@
     border-bottom: 2px solid #ddd;
 }
 
-.add-note form input:focus {
+.form-add-value:focus {
     outline: none;
     border-bottom-color: #2196f3;
 }
+.form-add-title[value='']{
+    display: none;
+}
+.add-note form:focus-within>input:first-child{
+    display: block;
+}
+
+
 
 .add-note form .add-btn {
     background-color: #2196f3;

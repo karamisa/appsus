@@ -67,6 +67,7 @@ export function AddNotes({ onAddNote }) {
         <section className="add-note">
             <form onSubmit={onSubmitNote} name='add-note-form'>
                 <input
+                    className='form-add-title'
                     type="text"
                     value={title}
                     name='title'
@@ -74,6 +75,7 @@ export function AddNotes({ onAddNote }) {
                     onChange={handleChange} />
                 <input
                     type="text"
+                    className='form-add-value'
                     value={value}
                     name={noteType}
                     placeholder={getPlaceholder(noteType)}
