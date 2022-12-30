@@ -52,9 +52,6 @@ export function MailIndex() {
     return (
         <section className="mail-index full main-layout">
             <div className="mail-toolbar-container">
-                <div>
-                    logo
-                </div>
                 <MailFilter onChangeFilter={onChangeFilter} />
             </div>
             <section className="mail-app flex">

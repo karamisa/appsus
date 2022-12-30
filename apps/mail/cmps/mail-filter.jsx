@@ -19,7 +19,7 @@ export function MailFilter({onChangeFilter}){
     }
 
 return (
-    <form onSubmit={handleSubmit} className="mail-filter">
+    <form onSubmit={handleSubmit} className="mail-filter flex justify-center">
         
         <input placeholder="Search" type="text" value={searchTerm} onChange={handleSearchChange} />
         <select onChange={handleReadChange}>

@@ -1,6 +1,5 @@
 header {
     background: #e8eaed94;
-    /* border-bottom: 2px solid white; */
 }
 
 .app-header {
@@ -8,15 +7,19 @@ header {
     justify-content: space-between;
 }
 
-
 .img-logo {
     width: 50px;
 }
 
-.app-header .app-header-logo{
-    font-family: fredoka; 
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+.app-header .app-header-logo {
+    font-family: fredoka;
     font-size: 2rem;
     letter-spacing: 0.15rem;
+    line-height: 65px;
     margin: 0;
     align-self: center;
     padding-left: 2rem;
@@ -25,43 +28,155 @@ header {
     gap: 10px;
 }
 
-/* 
-nav a {
-    margin: .5em;
-}
-
-nav a:active {
-    color: purple;
-}
-
-nav a.active {
-    color: darkblue;
-    font-weight: bold;
-} */
-
-nav {
+.main-nav {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     padding-right: 2rem;
-    /* font-family: roboto;  */
 }
+
 
 nav a {
     margin: .5em;
-    font-family: roboto;
+    font-family: fredoka;
+    letter-spacing: 0.1rem;
+    /* font-family: roboto; */
+    font-size: 1.3rem;
     margin: 0;
-    padding: 1.5rem 2rem;
+    padding: 1rem 2rem;
+    transition: box-shadow 0.4s;
+    text-decoration: none;
 }
 
 nav a:hover {
     background: #e2f3ff;
-    border-radius: 20em;
-    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+    /* border-radius: 20em; */
+    box-shadow: inset 0.5px 0 0 #dadce0, inset -0.5px 0 0 #dadce0, 0 4px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
 }
 
 nav a.active {
     font-weight: bold;
     text-decoration: underline;
-    
+    text-decoration-thickness: 4px;
+    text-underline-position: under;
+}
+
+
+
+@media (max-width: 780px) {
+    .app-header {
+        position: fixed;
+        width: 100%;
+        z-index: 1;
+    }
+
+    /* .main-nav ul {
+        position: absolute;
+        transform: translateY(100%);
+        bottom: 0;
+        left: 0;
+        flex-direction: column;
+        align-items: flex-end;
+        border-inline-start: 1px solid var(--clr0);
+        width: 100%;
+        justify-content: flex-end;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.6s, box-shadow 0.6s;
+    } */
+
+    .main-nav a {
+        background-color: #e8eaed94;
+    }
+
+    .show-bar ul {
+        overflow: visible;
+    }
+
+
+    .menu-toggle-btn {
+        background-color: #e8eaed94;
+        border: none;
+        font-size: 2rem;
+        width: 5rem;
+        color: rgb(49, 123, 145);
+        line-height: 65px;
+        cursor: pointer;
+    }
+
+    .main-nav {
+        /* flex-direction: column; */
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        top: 0px;
+        right: 0px;
+        visibility: hidden;
+        align-items: center;
+        width: 350px;
+        z-index: 6;
+    }
+
+   .show-bar{
+        visibility: visible;
+    }
+
+    ul{
+        flex-direction: column;
+        width: 250px;
+    }
+    .main-nav ul > * {
+        display: flex;
+        flex-direction: column;
+        /* position: fixed; */
+        /* padding: 20px 0; */
+        border-bottom: 1px solid rgba(226, 226, 226, 1);
+        width: 350px;
+        text-align: center;
+        background-color:  #e8eaed94;
+        opacity: 1;
+        line-height: 50px;
+    }
+
+    .nav-bar-screen.show-screen{
+    visibility: visible;
+    }
+
+    .nav-bar-screen {
+        visibility: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+
+}
+
+@media (min-width: 780px) {
+    .main-header .main-nav li {
+        box-shadow: -1px 0 0 #1d1d1d;
+    }
+
+    .main-header .main-nav a {
+        min-width: 130px;
+        height: 130px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-list {
+        align-items: center;
+    }
+
+    .menu-toggle-btn {
+        display: none;
+    }
+
+
+ 
 }
