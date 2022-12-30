@@ -1,14 +1,31 @@
 header {
-    background: lightcyan;
+    background: #e8eaed94;
     border-bottom: 2px solid white;
 }
 
 .app-header {
     display: flex;
     justify-content: space-between;
-    padding: 20px 0;
 }
 
+
+.img-logo {
+    width: 50px;
+}
+
+.app-header .app-header-logo{
+    font-family: fredoka; 
+    font-size: 2rem;
+    letter-spacing: 0.15rem;
+    margin: 0;
+    align-self: center;
+    padding-left: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 
 nav a {
     margin: .5em;
 }
@@ -20,5 +37,31 @@ nav a:active {
 nav a.active {
     color: darkblue;
     font-weight: bold;
-    text-decoration: overline;
+} */
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 2rem;
+    /* font-family: roboto;  */
+}
+
+nav a {
+    margin: .5em;
+    font-family: roboto;
+    margin: 0;
+    padding: 1.5rem 2rem;
+}
+
+nav a:hover {
+    background: #e2f3ff;
+    border-radius: 20em;
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+}
+
+nav a.active {
+    font-weight: bold;
+    text-decoration: underline;
+    
 }
