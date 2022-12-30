@@ -28,9 +28,18 @@ export function AddNotes({ onAddNote }) {
 
     }
 
+    // function onBlur(e) {
+    //     console.log(e)
+    //     if (e.target.name !== 'title') {
+    //         if (value !== '') {
+    //             onAddNote(noteType, title, value)
+    //             setValue('')
+    //             setTitle('')
+    //         }
+    //     }
+    // }
 
     function setButtons(noteType) {
-        console.log(noteType)
         const buttonsIcons = [
             <i onClick={() => onSelectType('note-txt')} className={(noteType === 'note-txt') ? 'far fa-sticky-note active' : 'far fa-sticky-note'}></i>,
             <i onClick={() => onSelectType('note-video')} className={(noteType === 'note-video') ? 'fab fa-youtube active' : 'fab fa-youtube'}></i>,
@@ -56,7 +65,7 @@ export function AddNotes({ onAddNote }) {
 
     return (
         <section className="add-note">
-            <form onSubmit={onSubmitNote}>
+            <form onSubmit={onSubmitNote} name='add-note-form'>
                 <input
                     type="text"
                     value={title}
