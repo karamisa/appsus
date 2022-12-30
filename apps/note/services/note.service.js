@@ -44,58 +44,72 @@ function removeNoteById(id) {
 
 function save(note) { //add if not empty?
     if (note.id && !note._id) {
-        return storageService.put(NOTES_KEY, note) 
+        return storageService.put(NOTES_KEY, note)
     } else {
         return storageService.post(NOTES_KEY, note)
     }
 }
 
-function getNewEmptyNote(type='note-txt',value='') {
+function getNewEmptyNote(type = 'note-txt',title='', value = '') {
     let emptyItem = {}
     switch (type) {
         case 'note-txt':
             emptyItem = {
-                id:'',
+                id: '',
                 type: 'note-txt',
                 isPinned: false,
                 info: {
-                    title: '',
+                    title: title,
                     txt: value,
                 },
                 style: {
                     backgroundColor: 'blue'
                 }
-             }
+            }
             break
         case 'note-img':
             emptyItem = {
-                id:'',
+                id: '',
                 type: 'note-img',
                 isPinned: false,
                 info: {
-                    title: '',
+                    title: title,
                     url: value,
                 },
                 style: {
                     backgroundColor: 'skyblue'
                 }
-             }
+            }
             break
         case 'note-todos':
             emptyItem = {
-                id:'',
+                id: '',
                 type: 'note-todos',
                 isPinned: false,
                 info: {
-                    title: value, 
-                    todos:[
-                        {txt:'' , doneAt: null}
+                    title: title,
+                    todos: [
+                        { txt: value, doneAt: null }
                     ]
                 },
                 style: {
                     backgroundColor: 'red'
                 }
-             }
+            }
+            break
+        case 'note-video':
+            emptyItem = {
+                id: '',
+                type: 'note-video',
+                isPinned: false,
+                info: {
+                    title: title,
+                    url: 'https://www.youtube.com/embed/' + _getId(value),
+                },
+                style: {
+                    backgroundColor: 'skyblue'
+                }
+            }
             break
     }
     return emptyItem
@@ -103,20 +117,20 @@ function getNewEmptyNote(type='note-txt',value='') {
 
 function getNextNoteId(noteId) {
     return storageService.query(NOTES_KEY)
-    .then(notes => {
-        var idx = notes.findIndex(note => note.id === noteId)
-        if (idx === notes.length - 1) idx = -1
-        return notes[idx + 1].id
-    })
+        .then(notes => {
+            var idx = notes.findIndex(note => note.id === noteId)
+            if (idx === notes.length - 1) idx = -1
+            return notes[idx + 1].id
+        })
 }
 
 function getPrevNoteId(noteId) {
     return storageService.query(NOTES_KEY)
-    .then(notes => {
-        let idx = notes.findIndex(note => note.id === noteId)
-        if (idx === 0) idx = notes.length - 0
-        return notes[idx - 1].id
-    })
+        .then(notes => {
+            let idx = notes.findIndex(note => note.id === noteId)
+            if (idx === 0) idx = notes.length - 0
+            return notes[idx - 1].id
+        })
 }
 
 function getFilterBy() {
@@ -131,7 +145,7 @@ function setFilterBy(filterBy = {}) {
 }
 
 function _createDemoKeepNotes() {
-    
+
     const notes = [
         {
             id: "n101",
@@ -148,7 +162,7 @@ function _createDemoKeepNotes() {
         {
             id: "n102",
             type: "note-img",
-            isPinned:true,
+            isPinned: true,
             info: {
                 url: `/apps/note/img/bobiandme.png`,
                 title: "Bobi and Me"
@@ -158,9 +172,9 @@ function _createDemoKeepNotes() {
             }
         },
         {
-            id:'n104',
+            id: 'n104',
             type: "note-todos",
-            isPinned:false,
+            isPinned: false,
             info: {
                 title: "Get my stuff together",
                 todos: [
@@ -171,20 +185,38 @@ function _createDemoKeepNotes() {
             style: {
                 backgroundColor: 'rgb(40 67 299)'
             }
-        }
+        },
+        {
+            id: "n105",
+            type: "note-video",
+            isPinned: true,
+            info: {
+                url: 'https://www.youtube.com/embed/' + _getId('https://www.youtube.com/watch?v=avv4bqkWgKs&ab_channel=IsaacPunts'),
+                title: ''
+            },
+            style: {
+                backgroundColor: 'rgb(235 125 125)'
+            }
+        },
     ]
-    
+
     utilService.saveToStorage(NOTES_KEY, notes)
-    
+
+}
+
+function _getId(url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null
 }
 
 function _createNotes() {
-    
+
     let notesDB = utilService.loadFromStorage(NOTES_KEY)
     if (!notesDB || !notesDB.length) {
         _createDemoKeepNotes()
     }
-    
+
 }
 
 function getNewTodo() {
@@ -192,7 +224,7 @@ function getNewTodo() {
 }
 
 function _setInfoByType(type) {
-     switch (type) {
+    switch (type) {
         case 'note-txt':
             return 'txt'
         case 'note-img':
