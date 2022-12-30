@@ -32,6 +32,9 @@
 
 .mail-body-container{
     flex: 1;
-
+    max-width: 84%;
 }
 
+.mail-app{
+    overflow-x: hidden;
+}

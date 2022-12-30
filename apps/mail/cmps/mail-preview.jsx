@@ -32,12 +32,15 @@ export function MailPreview({ email, onToggleMailProp }) {
             </h3>
             </section>
             <h3 className="date clean-space">{email.sentAt}</h3>
-            <div onClick={() => onHandleToggleIsRead()}>
+            <section className="actions">
+            <button onClick={() => onHandleToggleIsRead()}>
                 <i className={readClassName}> </i>
-            </div>
-            <div className="preview-btn" onClick={()=>onHandleRemove()}>
-                <i className="fas fa-trash-alt"></i>
-            </div>
+            </button>
+            <button className="preview-btn" onClick={()=>onHandleRemove()}>
+                {/* <i className="fas fa-trash-alt"></i> */}
+                <i className="fa-regular fa-trash-can"></i>
+            </button>
+            </section>
         </li>
     )
 }

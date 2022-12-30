@@ -1,4 +1,4 @@
-.mail-folder-list {
+/* .mail-folder-list {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,5 +55,111 @@
   
   .drafts .folder-icon {
     color: #f4b400;
+  } */
+
+
+.mail-folder-list {
+  width: 180px;
+  height: 100%;
+  position: relative;
+}
+
+/* .mail-folder-list a{
+    text-decoration: none;
+    color: unset;
   }
-  
+   */
+.side-folder {
+  position: fixed;
+  margin-right: 10px;
+}
+
+.folder-item {
+  height: 100%;
+}
+
+.side-folder{
+  position: fixed;
+  margin-right: 10px;
+  width: 180px;
+}
+
+.compose-container{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 8px;
+  right: 103px;
+  width: 145px;
+  height: 48px;
+  line-height: 32px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 24px;
+  font-size: 14px;
+  color: #202124;
+  letter-spacing: 0.25px;
+  padding: 13px;
+  cursor: pointer;
+}
+
+.compose-container i{
+  font-size: 32px;
+}
+
+.compose-container span {
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 14px;
+  padding-right: 14px;
+  /* display: none; */
+}
+
+.compose-container:hover {
+  box-shadow: rgba(60, 64, 67, 0.438) 0px 1px 2px 0px,
+  rgba(60, 64, 67, 0.438) 0px 1px 9px 1px;
+  background-color: rgba(60, 64, 67, 0.027);
+}
+
+.mail-folder-list .folders-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 170px;
+  height: 32px;
+  top: 59px;
+  left: 0;
+}
+
+.mail-folder-list .folders-container > * {
+  width: 66px;
+  height: 32px;
+}
+
+.mail-folder-list .folder-item {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding-left: 22px;
+  padding-right: 16px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.mail-folder-list .folder-item span{
+  color: #202124;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  font-size: 14px;
+  text-align: left;
+}
+
+.mail-folder-list .folder-item:hover {
+  background-color: #e8eaed94;
+  border-start-end-radius: 25px;
+  border-end-end-radius: 25px;
+}
+
