@@ -8,6 +8,7 @@ export const utilService = {
     getMonthName,
     getFormattedDate,
     getFormattedMonthName,
+    getFullDate,
     saveToStorage,
     loadFromStorage
 }
@@ -75,12 +76,26 @@ function getFormattedDate(timestamp) {
     const date = new Date(timestamp)
     // const isToday = _isBeforeToday(date)
     // if (isToday) {
-    //     return date.toLocaleTimeString();
+    //     return date.toLocaleTimeString()
     // }
-    let dd = date.getDate();
-    if (dd < 10) dd = '0' + dd;
+    let dd = date.getDate()
+    if (dd < 10) dd = '0' + dd
     return (dd)
 }
+
+function getFullDate(timestamp) {
+    const today = new Date()
+    const year = today.getFullYear()
+    let mm = today.getMonth() + 1
+    let dd = today.getDate()
+
+    if (dd < 10) dd = '0' + dd
+    if (mm < 10) mm = '0' + mm
+
+    return dd + '/' + mm + '/' + year
+
+}
+
 
 function saveToStorage(key, val) {
     localStorage.setItem(key, JSON.stringify(val))

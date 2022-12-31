@@ -1,0 +1,47 @@
+.email-details-container {
+    display: flex;
+    height: 79.6vw;
+    background-color: #f2f7fd;
+    justify-content: center;
+    align-items: center;
+    font-family: roboto;
+}
+
+
+.email-details {
+    background-color: white;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    height: 90%;
+    width: 80%;
+}
+
+.email-description {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+.email-details-header{
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 2rem;
+}
+
+.details-subject{
+margin: 0 0 0.5em;
+font-weight: 600;
+font-size: larger;
+
+}
+
+
+.details-sender,
+.details-date {
+    color: rgb(170, 170, 170);
+}
+
+.details-body {
+    padding-top: 30px;
+}

@@ -1,10 +1,11 @@
 const { useEffect, useState } = React
 const { useParams, useNavigate } = ReactRouterDOM
 
-import { mailService } from "../services/mail.service.js";
+import { mailService } from "../services/mail.service.js"
+import { utilService } from '../../../services/util.service.js'
 
 export function MailDetails() {
-    const [ email, setEmail ] = useState(null);
+    const [email, setEmail] = useState(null);
     const [nextEmailId, setNextEmailId] = useState(null)
     const { emailId } = useParams()
     const navigate = useNavigate()
@@ -40,15 +41,22 @@ export function MailDetails() {
         })
     }
 
-    if(!email) return <div>loading...</div>
+    if (!email) return <div>loading...</div>
 
     return (
-        <div className="email-details">
-            <div className="subject">Subject: {email.subject}</div>
-            <div className="sender">From: {email.sender}</div>
-            <div className="body">{email.body}</div>
-            <button onClick={() => onRemoveEmail(email.id)}>Delete</button>
-            <button onClick={() => onGoBack()}>Back to List</button>
-        </div>
+        <section className="email-details-container">
+            <div className="email-details">
+                <div className="email-details-header">
+                    <button className="details-back" onClick={() => onGoBack()}>Back to List</button>
+                    <button className="details-remove" onClick={() => onRemoveEmail(email.id)}>Delete</button>
+                </div>
+                <div className="details-subject">{email.subject}</div>
+                <div className="email-description">
+                    <div className="details-sender"><span className="bold black">From: </span>{email.from}</div>
+                    <div className="details-date">{ utilService.getFullDate(email.sentAt)}</div>
+                </div>
+                <div className="details-body">{email.body}</div>
+            </div>
+        </section>
     )
 }

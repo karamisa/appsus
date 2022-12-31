@@ -1,5 +1,5 @@
 const { Link } = ReactRouterDOM
-import { utilService } from '../../../services/util.service.js';
+import { utilService } from '../../../services/util.service.js'
 
 export function MailPreview({ email, onToggleMailProp }) {
 
@@ -29,7 +29,7 @@ export function MailPreview({ email, onToggleMailProp }) {
             <div className="star-mail" onClick={() => onHandleToggleIsStared()}>
                 <i className={staredClassName}></i>
             </div>
-            <Link onClick={onEnterMail} to={`/mail/${email.id}`} className="mail-link">
+            <Link onClick={onEnterMail} to={`/mail/details/${email.id}`} className="mail-link">
                 <h3 className={`sender clean-space text-overflow ${isBold}`}>{email.from}</h3>
                 <section className="content flex">
                     <h3 className={`subject clean-space ${isBold}`}>{email.subject}</h3>

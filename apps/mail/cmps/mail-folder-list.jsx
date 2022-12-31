@@ -5,13 +5,11 @@ export function MailFolderList({ onChangeFolder }) {
     const [folder, setFolder] = useState('inbox')
 
 
-
-function onChangeFolder(folder){
+function onClickFolder(folder){
+    onChangeFolder(folder)
     setFolder((prevStat) => (prevStat, folder))
-    
     console.log('folder', folder)
 }
-
 
     return (
         <section className="mail-folder-list">
@@ -28,7 +26,7 @@ function onChangeFolder(folder){
             <div className="folders-container">
             <div
                 className={`folder-item ${folder=== 'inbox' ? 'active-folder' : ''} inbox`}
-                onClick={() => onChangeFolder('inbox')}
+                onClick={() => onClickFolder('inbox')}
                 >
 
                 <div className="folder-icon flex" label="Inbox">
@@ -38,7 +36,7 @@ function onChangeFolder(folder){
             </div>
             <div
                 className={`folder-item ${folder=== 'sent' ? 'active-folder' : ''} sent`}
-                onClick={() => onChangeFolder('sent')}
+                onClick={() => onClickFolder('sent')}
                 >
                 <div className="folder-icon flex">
                     <i className="fas fa-envelope-open"></i>
@@ -47,7 +45,7 @@ function onChangeFolder(folder){
             </div>
             <div
                 className={`folder-item ${folder=== 'trash' ? 'active-folder' : ''} trash`}
-                onClick={() => onChangeFolder('trash')}
+                onClick={() => onClickFolder('trash')}
                 >
                 <div className="folder-icon flex">
                     <i className="fas fa-trash-alt"></i>
@@ -56,7 +54,7 @@ function onChangeFolder(folder){
             </div>
             <div
                 className={`folder-item ${folder=== 'draft' ? 'active-folder' : ''} draft`}
-                onClick={() => onChangeFolder('draft')}
+                onClick={() => onClickFolder('draft')}
                 >
                 <div className="folder-icon flex">
                     <i className="fas fa-file"></i>
