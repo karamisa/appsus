@@ -43,19 +43,19 @@ function removeNoteById(id) {
 }
 
 function save(note) { //add if not empty?
-    if (note.id && !note._id) {
+    if (note.id) {
         return storageService.put(NOTES_KEY, note)
     } else {
         return storageService.post(NOTES_KEY, note)
     }
 }
 
-function getNewEmptyNote(type = 'note-txt',title='', value = '') {
+function getNewEmptyNote(type = 'note-txt', title = '', value = '') {
     let emptyItem = {}
     switch (type) {
         case 'note-txt':
             emptyItem = {
-                id: '',
+                id,
                 type: 'note-txt',
                 isPinned: false,
                 info: {
@@ -77,7 +77,7 @@ function getNewEmptyNote(type = 'note-txt',title='', value = '') {
                     url: value,
                 },
                 style: {
-                    backgroundColor: 'skyblue'
+                    backgroundColor: '#fff'
                 }
             }
             break
@@ -93,7 +93,7 @@ function getNewEmptyNote(type = 'note-txt',title='', value = '') {
                     ]
                 },
                 style: {
-                    backgroundColor: 'red'
+                    backgroundColor: '#fff'
                 }
             }
             break
@@ -107,7 +107,7 @@ function getNewEmptyNote(type = 'note-txt',title='', value = '') {
                     url: 'https://www.youtube.com/embed/' + _getId(value),
                 },
                 style: {
-                    backgroundColor: 'skyblue'
+                    backgroundColor: '#fff'
                 }
             }
             break
@@ -145,61 +145,237 @@ function setFilterBy(filterBy = {}) {
 }
 
 function _createDemoKeepNotes() {
-
-    const notes = [
+   const NOTES_JSON=[
         {
-            id: "n101",
-            type: "note-txt",
-            isPinned: true,
-            info: {
-                title: 'NOTES!!!!',
-                txt: "Fullstack Me Baby!"
-            },
-            style: {
-                backgroundColor: 'rgb(235 100 30)'
-            }
+           "id":"n101",
+           "type":"note-txt",
+           "isPinned":false,
+           "info":{
+              "title":"NOTES!!!!",
+              "txt":"I think that CSS may have finally clicked for me during sprint 3. I feel like I learned so much."
+           },
+           "style":{
+              "backgroundColor":"#fff"
+           }
         },
         {
-            id: "n102",
-            type: "note-img",
-            isPinned: true,
-            info: {
-                url: `/apps/note/img/bobiandme.png`,
-                title: "Bobi and Me"
-            },
-            style: {
-                backgroundColor: 'rgb(235 125 125)'
-            }
+           "id":"n104",
+           "type":"note-todos",
+           "isPinned":true,
+           "info":{
+              "title":"Get my stuff together",
+              "todos":[
+                 {
+                    "txt":"Get my life together",
+                    "doneAt":null
+                 }
+              ]
+           },
+           "style":{
+              "backgroundColor":"#fff"
+           }
         },
         {
-            id: 'n104',
-            type: "note-todos",
-            isPinned: false,
-            info: {
-                title: "Get my stuff together",
-                todos: [
-                    { txt: "Driving liscence", doneAt: null },
-                    { txt: "Coding power", doneAt: 187111111 }
-                ]
-            },
-            style: {
-                backgroundColor: 'rgb(40 67 299)'
-            }
+           "id":"hjCNa",
+           "type":"note-video",
+           "isPinned":true,
+           "info":{
+              "title":"Coding Academy",
+              "url":"https://www.youtube.com/embed/FWy_LbhHtug"
+           },
+           "style":{
+              "backgroundColor":"#fff475"
+           }
         },
         {
-            id: "n105",
-            type: "note-video",
-            isPinned: true,
-            info: {
-                url: 'https://www.youtube.com/embed/' + _getId('https://www.youtube.com/watch?v=avv4bqkWgKs&ab_channel=IsaacPunts'),
-                title: ''
-            },
-            style: {
-                backgroundColor: 'rgb(235 125 125)'
-            }
+           "id":"YU1LS",
+           "type":"note-img",
+           "isPinned":false,
+           "info":{
+              "title":"JS Wallpaper!",
+              "url":"https://www.computerhope.com/jargon/j/javascript.png"
+           },
+           "style":{
+              "backgroundColor":"#1467ec"
+           }
         },
-    ]
-
+        {
+           "id":"o09Tl",
+           "type":"note-todos",
+           "isPinned":true,
+           "info":{
+              "title":"TODOs For Sprint 3",
+              "todos":[
+                 {
+                    "txt":"Make App Skeleton",
+                    "doneAt":1672514491352
+                 },
+                 {
+                    "txt":"Make Mail Service",
+                    "doneAt":1672514490748
+                 },
+                 {
+                    "txt":"Make Mail Cmps",
+                    "doneAt":1672514490170
+                 },
+                 {
+                    "txt":"Design Mail CSS",
+                    "doneAt":1672514489648
+                 },
+                 {
+                    "txt":"Make Note Service",
+                    "doneAt":1672514489167
+                 },
+                 {
+                    "txt":"Develop Notes Cmps",
+                    "doneAt":1672514488668
+                 },
+                 {
+                    "txt":"Design Notes CSS",
+                    "doneAt":1672514488118
+                 },
+                 {
+                    "txt":"Fix Bugs",
+                    "doneAt":null
+                 }
+              ]
+           },
+           "style":{
+              "backgroundColor":"#e7e0e0"
+           }
+        },
+        {
+           "id":"ezefD",
+           "type":"note-img",
+           "isPinned":false,
+           "info":{
+              "title":"React",
+              "url":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"
+           },
+           "style":{
+              "backgroundColor":"#fff"
+           }
+        },
+        {
+           "id":"dyZdA",
+           "type":"note-img",
+           "isPinned":true,
+           "info":{
+              "title":"",
+              "url":"https://images7.memedroid.com/images/UPLOADED808/6368782c7bef3.jpeg"
+           },
+           "style":{
+              "backgroundColor":"#ccff90"
+           }
+        },
+        {
+           "id":"igSGW",
+           "type":"note-img",
+           "isPinned":false,
+           "info":{
+              "title":"",
+              "url":"apps/note/img/meme1.png"
+           },
+           "style":{
+              "backgroundColor":"#fff"
+           }
+        },
+        {
+           "id":"YBYNY",
+           "type":"note-video",
+           "isPinned":false,
+           "info":{
+              "title":"LEARN CSS",
+              "url":"https://www.youtube.com/embed/TUD1AWZVgQ8"
+           },
+           "style":{
+              "backgroundColor":"#fbbc04"
+           }
+        },
+        {
+           "id":"6dlgJ",
+           "type":"note-txt",
+           "isPinned":false,
+           "info":{
+              "title":"My Bad Habits",
+              "txt":"- Watching too much TV \n- Not cleaning my room\n- Forgetting to work-out\n- Spending an hour trying to figure out how to center a div"
+           },
+           "style":{
+              "backgroundColor":"#1467ec"
+           }
+        },
+        {
+           "id":"DWiUE",
+           "type":"note-todos",
+           "isPinned":true,
+           "info":{
+              "title":"Learn How To Code",
+              "todos":[
+                 {
+                    "txt":"Learn JavaScript Basics",
+                    "doneAt":""
+                 },
+                 {
+                    "txt":"Learn CSS basics",
+                    "doneAt":""
+                 },
+                 {
+                    "txt":" JS Array Methods",
+                    "doneAt":""
+                 },
+                 {
+                    "txt":"JS Matrices",
+                    "doneAt":""
+                 },
+                 {
+                    "txt":"Spring 1 - Minesweeper",
+                    "doneAt":""
+                 },
+                 {
+                    "txt":"JS Libraries",
+                    "doneAt":""
+                 },
+                 {
+                    "txt":"Sprint 2 - JS Canvas",
+                    "doneAt":""
+                 },
+                 {
+                    "txt":"JS Promises ",
+                    "doneAt":""
+                 },
+                 {
+                    "txt":"CRUDL",
+                    "doneAt":""
+                 },
+                 {
+                    "txt":"MVC",
+                    "doneAt":""
+                 },
+                 {
+                    "txt":"JS Frameworks",
+                    "doneAt":""
+                 },
+                 {
+                    "txt":"jQuery",
+                    "doneAt":""
+                 },
+                 {
+                    "txt":"React",
+                    "doneAt":""
+                 },
+                 {
+                    "txt":"Routing/URL Params",
+                    "doneAt":null
+                 }
+              ]
+           },
+           "style":{
+              "backgroundColor":"#eb7d7d"
+           }
+        }
+     ]
+     const notes =  JSON.parse(JSON.stringify(NOTES_JSON))
+    
     utilService.saveToStorage(NOTES_KEY, notes)
 
 }

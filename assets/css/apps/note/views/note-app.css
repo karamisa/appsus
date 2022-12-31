@@ -11,7 +11,17 @@
     width: 100%;
     column-count: 4;
     column-width: 200px;
-    padding: 2em;
+    padding:0.4em 2em 2em 2em;
+}
+
+.note-list-title{
+    padding-left: 6.125em;
+    padding-bottom: 2em;
+    text-transform:uppercase ;
+    font-weight: 500;
+    font-size: .6875em;
+    letter-spacing: .8px;
+    line-height: 1em;
 }
 
 .note-filter-list {

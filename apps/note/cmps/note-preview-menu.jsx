@@ -11,7 +11,7 @@ export function NotePreviewMenu({ note, saveChanges, onRemoveNote }) {
         }
     }
 
-    const pinClassName = note.isPinned ? "fa-solid fa-thumbtack pin-yellow" : "fa-solid fa-thumbtack"
+    const pinClassName = note.isPinned ? "fa-solid fa-thumbtack pin-yellow" : "fa-solid fa-thumbtack pin-regular"
     return (
         <div className='note-menu'>
             <ColorPaletteSelector note={note} saveChanges={saveChanges}/>

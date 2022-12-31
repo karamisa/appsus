@@ -2,7 +2,9 @@ export function ColorPaletteSelector({note, saveChanges}) {
     function onSetColor(color){
 
         switch(color){
-            case 'white': color = '#e7e0e0'
+            case 'white': color = '#fff'
+                break
+            case 'grey': color = '#e7e0e0'
                 break
             case 'blue': color = '#1467ec'
                 break
@@ -12,9 +14,7 @@ export function ColorPaletteSelector({note, saveChanges}) {
                 break
             case 'green': color = '#ccff90'
                 break
-            case 'red': {
-                console.log('here')
-                color = '#eb7d7d'}
+            case 'red': color = '#eb7d7d'
                 break
 
             default:
@@ -31,6 +31,7 @@ export function ColorPaletteSelector({note, saveChanges}) {
         </button>
         <div className="note-colors-palette-container color-select">
             <div className="note-colors-palette white" onClick={()=> onSetColor('white')}></div>
+            <div className="note-colors-palette grey" onClick={()=> onSetColor('grey')}></div>
             <div className="note-colors-palette blue" onClick={()=> onSetColor('blue')}></div>
             <div className="note-colors-palette orange" onClick={()=> onSetColor('orange')}></div>
             <div className="note-colors-palette yellow" onClick={()=> onSetColor('yellow')}></div>

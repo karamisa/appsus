@@ -1,5 +1,5 @@
 .white {
-    background-color: #e7e0e0;
+    background-color: #fff;
 }
 
 .blue {
@@ -20,6 +20,10 @@
 
 .red {
     background-color: #eb7d7d;
+}
+
+.grey {
+    background-color: #e7e0e0;
 }
 
 /* .other {

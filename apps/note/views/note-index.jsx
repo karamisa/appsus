@@ -1,5 +1,6 @@
 const { useState, useEffect } = React
 const { Link } = ReactRouterDOM
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 
 import { AddNotes } from "../cmps/add-notes.jsx"
 import { NoteFilter } from "../cmps/note-filter.jsx"
@@ -36,11 +37,11 @@ export function NoteIndex() {
             .then(() => {
                 const updatedNotes = notes.filter(note => note.id !== noteId)
                 setNotes(updatedNotes)
-                //         showSuccessMsg('Note Removed!')
+                        showSuccessMsg('Note Removed!')
             })
             .catch((err) => {
                 console.log('Had issues removing', err)
-                //         showErrorMsg('Could not remove note, try again please!')
+                        showErrorMsg('Could not remove note, try again please!')
             })
     }
 
@@ -64,8 +65,11 @@ export function NoteIndex() {
 
     function onAddNote(name, title, value) {
         const newNote = notesService.getNewEmptyNote(name, title, value)
-        setNotes((prevNotes) => [newNote, ...prevNotes])
-        notesService.save(newNote)
+        notesService.save(newNote).then((newNote)=>{
+            setNotes((prevNotes) => [...prevNotes,newNote])
+            showSuccessMsg('Note Saved!')
+        }
+        )
     }
 
 

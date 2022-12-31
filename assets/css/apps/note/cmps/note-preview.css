@@ -106,12 +106,12 @@
 .note-color-btn-container:hover>:last-child {
     display: flex;
 }
-
-.pin
+.pin-regular{
+    color: #9b9b9b;
+}
 
 .pin-yellow {
-    color: black;
-    opacity: 1 !important;
+   color : rgb(46, 46, 46);
 }
 
 
