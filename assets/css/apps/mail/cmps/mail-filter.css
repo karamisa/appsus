@@ -7,29 +7,37 @@
   }
   
   .mail-filter input[type="text"] {
-    width: 240px;
-    height: 36px;
-    margin: 0 16px 0 0;
-    padding: 0 12px;
+    width: 20rem;
+    height: 2.2rem;
+    margin: 0.5rem;
+    padding: 0 15px;
     border: none;
-    border-radius: 4px 0 0 4px;
-    background-color: #f5f5f5;
+    border-radius: 5px;
+    background-color: #f2f6fc;
     font-size: 14px;
     color: #212121;
   }
   
   .mail-filter select {
-    width: 120px;
-    height: 36px;
-    margin: 0;
-    padding: 0 12px;
+    width: 8rem;
+    height: 2.2rem;
+    margin: 0.5rem;
+    padding: 0 15px;
     border: none;
-    border-radius: 0 4px 4px 0;
-    background-color: #f5f5f5;
+    border-radius: 5px;
+    background-color: #f2f6fc;
     font-size: 14px;
     color: #212121;
   }
   
   .mail-filter option {
     color: #757575;
+  }
+
+
+
+  @media (max-width: 780px) {
+    .mail-filter{
+    padding-top: 70px;
+    }
   }

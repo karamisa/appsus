@@ -19,8 +19,8 @@ export function MailPreview({ email, onToggleMailProp }) {
     let isBold = email.isRead ? 'un-bold black' : ''
     let isReadMail = email.isRead ? '' : 'read'
     return (
-        <li className={`flex align-center mail-preview ${isReadMail} `}>
-            <div onClick={() => onHandleToggleIsStared()}>
+        <li className={`mail-preview ${isReadMail} `}>
+            <div className="star-mail" onClick={() => onHandleToggleIsStared()}>
                  <i className={staredClassName}></i>
             </div>
             <h3 className={`sender clean-space text-overflow ${isBold}`}>sender's name</h3>
@@ -32,15 +32,15 @@ export function MailPreview({ email, onToggleMailProp }) {
             </h3>
             </section>
             <h3 className="date clean-space">{email.sentAt}</h3>
-            <section className="actions">
-            <button onClick={() => onHandleToggleIsRead()}>
-                <i className={readClassName}> </i>
-            </button>
-            <button className="preview-btn" onClick={()=>onHandleRemove()}>
+            {/* <section className="actions"> */}
+            <button className="trash-btn" onClick={()=>onHandleRemove()}>
                 {/* <i className="fas fa-trash-alt"></i> */}
                 <i className="fa-regular fa-trash-can"></i>
             </button>
-            </section>
+            <button className="reading-btn" onClick={() => onHandleToggleIsRead()}>
+                <i className={readClassName}> </i>
+            </button>
+            {/* </section> */}
         </li>
     )
 }

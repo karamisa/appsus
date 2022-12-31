@@ -38,12 +38,13 @@ export function MailCompose() {
   }
 
   return (
-    <section className="mail-compose">
+    <section className="mail-compose-container">
             <div className="compose-header">
-              <button onClick={()=> onCloseCompose()}>X</button>
+              <span>New Message</span>
+              <button className="close-compose" onClick={()=> onCloseCompose()}>X</button>
             </div>
-      <form onSubmit={handleSubmit} className="flex column">
-        <label htmlFor="to" className="compose-label">To:
+      <form onSubmit={handleSubmit} className="compose-form flex flex-column">
+        <label htmlFor="to" className="compose-label">
         <input
           type="text"
           name='to'
@@ -52,8 +53,9 @@ export function MailCompose() {
           value={email.to}
           onChange={(e) => handleChange(e)}
           className="compose-input"
+          placeholder="To"
         /></label>
-        <label htmlFor="subject" className="compose-label">Subject:
+        <label htmlFor="subject" className="compose-label">
         <input
           type="text"
           name='subject'
@@ -62,8 +64,9 @@ export function MailCompose() {
           value={email.subject}
           onChange={(e) => handleChange(e)}
           className="compose-input"
+          placeholder="Subject"
         /></label>
-        <label htmlFor="body" className="compose-label">Body:
+        <label htmlFor="body" className="compose-label compose-textarea">
         <textarea
           id="body"
           required

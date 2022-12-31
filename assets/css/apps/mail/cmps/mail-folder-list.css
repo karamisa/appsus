@@ -57,11 +57,11 @@
     color: #f4b400;
   } */
 
-.folder-icon{
+.folder-icon {
   align-items: center;
 }
 
-.folder-name{
+.folder-name {
   padding-inline-start: 20px;
   font-weight: 600;
 }
@@ -88,13 +88,13 @@
   font-weight: 600;
 }
 
-.side-folder{
+.side-folder {
   position: fixed;
   margin-right: 10px;
   width: 180px;
 }
 
-.compose-container{
+.compose-container {
   position: absolute;
   display: flex;
   align-items: center;
@@ -115,7 +115,7 @@
   cursor: pointer;
 }
 
-.compose-container i{
+.compose-container i {
   font-size: 32px;
 }
 
@@ -130,7 +130,7 @@
 
 .compose-container:hover {
   box-shadow: rgba(60, 64, 67, 0.438) 0px 1px 2px 0px,
-  rgba(60, 64, 67, 0.438) 0px 1px 9px 1px;
+    rgba(60, 64, 67, 0.438) 0px 1px 9px 1px;
   background-color: rgba(60, 64, 67, 0.027);
 }
 
@@ -145,7 +145,7 @@
   left: 0;
 }
 
-.mail-folder-list .folders-container > * {
+.mail-folder-list .folders-container>* {
   width: 66px;
   height: 32px;
 }
@@ -159,7 +159,7 @@
   cursor: pointer;
 }
 
-.mail-folder-list .folder-item span{
+.mail-folder-list .folder-item span {
   color: #202124;
   display: flex;
   justify-content: space-between;
@@ -179,3 +179,31 @@
   border-end-end-radius: 25px;
 }
 
+
+@media (max-width: 630px) {
+
+  .side-folder span {
+    display: none;
+  }
+
+  .compose-container {
+    width: 45px;
+  }
+
+  .mail-folder-list .folder-item {
+    width: 60px;
+  }
+  .mail-folder-list {
+    width: 40px;
+  }
+
+  .mail-folder-list .folder-item span {
+    display: none;
+  }
+
+
+  .mail-folder-list .folders-container {
+    width:60px;
+  }
+
+}
