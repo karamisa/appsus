@@ -1,9 +1,9 @@
 .white {
-    background-color: #ffffff;
+    background-color: #e7e0e0;
 }
 
 .blue {
-    background-color: blue;
+    background-color: #1467ec;
 }
 
 .orange {
@@ -16,6 +16,10 @@
 
 .green {
     background-color: #ccff90;
+}
+
+.red {
+    background-color: #f75540;
 }
 
 .note-colors-palette {

@@ -197,7 +197,7 @@ h3.un-bold {
   }
 
   .mail-preview .content {
-    max-width: calc(75vw - 10.25rem);
+    max-width: calc(75vw - 10rem);
   }
 }
 
@@ -221,7 +221,7 @@ h3.un-bold {
 
   .mail-preview .content {
     align-self: unset;
-    max-width: calc(75vw - 17.05rem);
+    max-width: calc(75vw - 17rem);
   }
 
   /* .mail-preview .subject {

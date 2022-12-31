@@ -1,5 +1,20 @@
 export function ColorPaletteSelector({note, saveChanges}) {
     function onSetColor(color){
+
+        switch(color){
+            case 'white': color = '#e7e0e0'
+                break
+            case 'blue': color = '#1467ec'
+                break
+            case 'orange': color = '#fbbc04'
+                break
+            case 'yellow': color = '#fff475'
+                break
+            case 'green': color = '#ccff90'
+                break
+            case 'red': color = '#f75540'
+        }
+
         const updatedStyle = {backgroundColor: color}
         saveChanges('style', updatedStyle, note.id)
     }
@@ -13,6 +28,7 @@ export function ColorPaletteSelector({note, saveChanges}) {
             <div className="note-colors-palette blue" onClick={()=> onSetColor('blue')}></div>
             <div className="note-colors-palette orange" onClick={()=> onSetColor('orange')}></div>
             <div className="note-colors-palette yellow" onClick={()=> onSetColor('yellow')}></div>
+            <div className="note-colors-palette red" onClick={()=> onSetColor('red')}></div>
             <div className="note-colors-palette green" onClick={()=> onSetColor('green')}></div>
         </div>
     </div>
