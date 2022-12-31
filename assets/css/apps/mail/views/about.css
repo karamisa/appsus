@@ -1,6 +1,5 @@
 .about {
     overflow: hidden;
-    /* height: 80vh; */
     display: flex;
     text-align: center;
     justify-content: space-evenly;
@@ -9,7 +8,7 @@
     min-height: 700px;
     width: 100vw;
     margin: 0;
-    background-color: #e8eaed94;
+    background-color:var(--header-bg);
 }
 
 
@@ -40,7 +39,6 @@
     padding-top: 40px;
     padding-bottom: 10px;
     max-width: 400px;
-    /* box-shadow: 0 0 13px rgb(0 0 0 / 23%); */
     border-radius: 15px;
 }
 
@@ -60,10 +58,6 @@
         width: 285px;
         height: 285px;
     }
-
-    /* .about {
-        line-height: 25px;
-    } */
 
 }
 @media (max-width: 780px) {
