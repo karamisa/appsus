@@ -53,7 +53,7 @@ export function AddNotes({ onAddNote }) {
     function getPlaceholder(noteType) {
         switch (noteType) {
             case 'note-txt':
-                return 'Enter new note here...'
+                return 'Take a note...'
             case 'note-img':
                 return 'Enter image url...'
             case 'note-video':
