@@ -55,7 +55,7 @@ function getNewEmptyNote(type = 'note-txt', title = '', value = '') {
     switch (type) {
         case 'note-txt':
             emptyItem = {
-                id,
+                id: '',
                 type: 'note-txt',
                 isPinned: false,
                 info: {
