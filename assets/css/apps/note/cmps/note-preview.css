@@ -58,6 +58,7 @@
     justify-content: space-between;
     border-radius: 10px;
     padding: 10px;
+    border: 1px solid #e0e0e0;
 }
 
 .note-preview:hover{
@@ -115,7 +116,9 @@
     display: flex;
 }
 
+.pin
+
 .pin-yellow {
-    color: yellow;
+    color: black;
     opacity: 1 !important;
 }
