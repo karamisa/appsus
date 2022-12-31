@@ -17,7 +17,7 @@ export function AppHeader() {
 
     return <header className="app-header">
         <Link to="/" className="app-header-logo">
-            <img src="/../assets/img/horse.png" className="img-logo" />
+            <img src="assets/img/horse.png" className="img-logo" />
             <h3>Appsus</h3>
         </Link>
         <nav className={`main-nav ${isShown ? 'show-bar' : ''}`}>
