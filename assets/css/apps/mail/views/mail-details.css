@@ -1,6 +1,8 @@
 .email-details-container {
     display: flex;
-    height: 79.6vw;
+    position: absolute;
+    width: 100vw;
+    height: 93.5vh;
     background-color: #f2f7fd;
     justify-content: center;
     align-items: center;
@@ -23,16 +25,16 @@
 }
 
 
-.email-details-header{
+.email-details-header {
     display: flex;
     gap: 1rem;
     padding-bottom: 2rem;
 }
 
-.details-subject{
-margin: 0 0 0.5em;
-font-weight: 600;
-font-size: larger;
+.details-subject {
+    margin: 0 0 0.5em;
+    font-weight: 600;
+    font-size: larger;
 
 }
 
@@ -45,3 +47,35 @@ font-size: larger;
 .details-body {
     padding-top: 30px;
 }
+
+.details-back,
+.details-remove {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    font-size: larger;
+    padding-left: 20px;
+
+}
+
+.details-remove {
+    padding-left: 80px;
+    left: 100px;
+}
+
+.details-back {
+    display: flex;
+    align-items: flex-start;
+}
+
+
+
+
+@media (max-width: 780px) {
+    .email-details-container {
+    padding-top: 70px;
+    height: calc(93.5vh + 6.5vh);
+    }
+  }

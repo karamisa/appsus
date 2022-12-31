@@ -20,15 +20,12 @@ export function MailCompose() {
     navigate('/mail')
   }
 
-
-
   function handleChange({ target }) {
     let { value, type, name: field } = target
     value = type === 'number' ? +value : value
     setEmail((prevEmail) => ({ ...prevEmail, [field]: value }))
+    console.log('email', email)
   }
-
-
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -46,7 +43,7 @@ export function MailCompose() {
       <form onSubmit={handleSubmit} className="compose-form flex flex-column">
         <label htmlFor="to" className="compose-label">
         <input
-          type="text"
+          type="email"
           name='to'
           required
           id="to"
@@ -77,7 +74,7 @@ export function MailCompose() {
         /></label>
 
       </form>
-        <button type="submit" className="compose-button">Send</button>
+        <button type="submit" className="compose-button" onClick={(ev) => handleSubmit(ev)} >Send</button>
 
     </section >
   )

@@ -13,9 +13,6 @@
   align-items: center;
   align-content: center;
   flex-flow: wrap;
-  /* gap: 10px; */
-  /* line-height: 2.8em; */
-  /* position: relative; */
   padding: 0 15px;
   box-shadow: #dadce0 0px -0.5px 0px 0px inset;
   
@@ -101,10 +98,6 @@ h3.un-bold {
 }
 
 .content {
-  /* align-items: center;
-  width: 0;
-  flex-grow: 1; */
-
   overflow: hidden;
   max-width: calc(100vw - 7.25rem);
   display: flex;
@@ -142,7 +135,7 @@ h3.un-bold {
   /* padding-inline-start: 50px; */
   width: 25%;
   position: absolute;
-  right: 10px;
+  right: 20px;
   display: flex;
   justify-content: flex-end;
   padding-right: 0;
@@ -218,6 +211,7 @@ h3.un-bold {
     align-self: flex-start;
     max-width: calc(75vw - 17rem);
     /* display: unset; */
+    align-self: center;
   }
 
   .mail-preview .sender {

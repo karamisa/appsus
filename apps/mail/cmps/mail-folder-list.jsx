@@ -8,7 +8,6 @@ export function MailFolderList({ onChangeFolder }) {
 function onClickFolder(folder){
     onChangeFolder(folder)
     setFolder((prevStat) => (prevStat, folder))
-    console.log('folder', folder)
 }
 
     return (

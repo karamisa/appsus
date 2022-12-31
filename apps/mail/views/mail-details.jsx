@@ -47,8 +47,13 @@ export function MailDetails() {
         <section className="email-details-container">
             <div className="email-details">
                 <div className="email-details-header">
-                    <button className="details-back" onClick={() => onGoBack()}>Back to List</button>
-                    <button className="details-remove" onClick={() => onRemoveEmail(email.id)}>Delete</button>
+                    <button className="details-back" onClick={() => onGoBack()}>
+                    <i className="fa-solid fa-arrow-left"></i>
+                    {/* <span> Back</span> */}
+                    </button>
+                    <button className="details-remove" onClick={() => onRemoveEmail(email.id)}>
+                    <i className="fas fa-trash-alt"></i>
+                    </button>
                 </div>
                 <div className="details-subject">{email.subject}</div>
                 <div className="email-description">

@@ -21,7 +21,7 @@ export function MailPreview({ email, onToggleMailProp }) {
     }
 
     let readClassName = email.isRead ? "fa-regular fa-envelope-open" : "fa-regular fa-envelope"
-    const staredClassName = email.isStared ? "fa-regular fa-star" : "fa-solid fa-star starred"
+    const staredClassName = email.isStared ? "fa-solid fa-star starred" : "fa-regular fa-star"
     let isBold = email.isRead ? 'un-bold black' : ''
     let isReadMail = email.isRead ? '' : 'read'
     return (

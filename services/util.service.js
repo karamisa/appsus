@@ -66,9 +66,15 @@ function getMonthName(date) {
     return monthNames[date.getMonth()]
 }
 
+function _getShortMonthName(date) {
+    const monthNames = ["Jan", "Febr", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ]
+    return monthNames[date.getMonth()]
+}
 function getFormattedMonthName(timestamp) {
     const date = new Date(timestamp)
-    return getMonthName(date)
+    return _getShortMonthName(date)
 
 }
 
@@ -84,7 +90,7 @@ function getFormattedDate(timestamp) {
 }
 
 function getFullDate(timestamp) {
-    const today = new Date()
+    const today = new Date(timestamp)
     const year = today.getFullYear()
     let mm = today.getMonth() + 1
     let dd = today.getDate()

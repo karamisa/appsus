@@ -8,7 +8,7 @@ import { MailFolderList } from '../cmps/mail-folder-list.jsx'
 import { mailService } from './../services/mail.service.js';
 
 export function MailIndex() {
-    const [criteria, setCriteria] = useState({status: 'inbox'})
+    const [criteria, setCriteria] = useState({ status: 'inbox' })
     const [emails, setEmails] = useState([])
 
     useEffect(() => {
@@ -30,24 +30,26 @@ export function MailIndex() {
     }
 
 
-    function onChangeFilter({ isRead, searchTerm: txt }) {
-        setCriteria((prevCriteria) => ({ ...prevCriteria, txt, isRead }))
+    function onChangeFilter({ isRead, isStared, searchTerm: txt }) {
+        console.log('isRead', isRead)
+        console.log('isStared', isStared)
+        setCriteria((prevCriteria) => ({ ...prevCriteria, txt, isStared, isRead }))
     }
 
 
     function onToggleMailProp(prop, val, emailId) {
         const emailtoUpdate = emails.find(email => email.id === emailId)
         const emailtoUpdateIdx = emails.findIndex(email => email.id === emailId)
-        emailtoUpdate[prop]= val 
-        const emailsToUpdate = emails.map((email,idx) => {
-            return (idx=== emailtoUpdateIdx) ? emailtoUpdate: email
+        emailtoUpdate[prop] = val
+        const emailsToUpdate = emails.map((email, idx) => {
+            return (idx === emailtoUpdateIdx) ? emailtoUpdate : email
         })
         setEmails(emailsToUpdate)
         mailService.save(emailtoUpdate).then((email) => {
             console.log(email)
-            setCriteria((prevCriteria)=> ({...prevCriteria}))
-    })
-}
+            setCriteria((prevCriteria) => ({ ...prevCriteria }))
+        })
+    }
 
     return (
         <section className="mail-index full main-layout">
@@ -55,18 +57,10 @@ export function MailIndex() {
                 <MailFilter onChangeFilter={onChangeFilter} />
             </div>
             <section className="mail-app flex">
-            {/* <div className='mail-folder-list-container'> */}
                 <MailFolderList onChangeFolder={onChangeFolder} />
-            {/* </div> */}
-            {/* <div className="mail-body-container"> */}
                 <MailList emails={emails} onToggleMailProp={onToggleMailProp} />
-                {/* <div className="mail-compose-container"> */}
-                    <Outlet />
-                {/* </div> */}
-            {/* </div> */}
+                <Outlet />
             </section>
-
-
         </section>
     )
 

@@ -1,5 +1,5 @@
 header {
-    background: #e8eaed94;
+    background: var(--header-bg);
 }
 
 .app-header {
@@ -49,7 +49,7 @@ nav a {
 }
 
 nav a:hover {
-    background: #e2f3ff;
+    background: var(--nav-bar-hover);
     /* border-radius: 20em; */
     box-shadow: inset 0.5px 0 0 #dadce0, inset -0.5px 0 0 #dadce0, 0 4px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
 }
@@ -86,7 +86,7 @@ nav a.active {
     } */
 
     .main-nav a {
-        background-color: #e8eaed94;
+        background-color: var(--header-bg);
     }
 
     .show-bar ul {
@@ -95,7 +95,7 @@ nav a.active {
 
 
     .menu-toggle-btn {
-        background-color: #e8eaed94;
+        background-color: var(--header-bg);
         border: none;
         font-size: 2rem;
         width: 5rem;
@@ -133,7 +133,7 @@ nav a.active {
         border-bottom: 1px solid rgba(226, 226, 226, 1);
         width: 350px;
         text-align: center;
-        background-color:  #e8eaed94;
+        background-color:  var(--header-bg);
         opacity: 1;
         line-height: 50px;
     }

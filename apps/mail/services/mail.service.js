@@ -44,7 +44,7 @@ function query(criteria = { status: 'inbox' }) {
                 emails = emails.filter(email => email.isRead == JSON.parse(criteria.isRead))
             }
             if (criteria.isStared) {
-                emails = emails.filter(email => email.isStared === criteria.isStared)
+                emails = emails.filter(email => email.isStared === JSON.parse(criteria.isStared))
             }
             if (criteria.lables) {
                 console.log('here')
@@ -95,8 +95,8 @@ function getEmptyEmailToSend(subject = '', body = '', to = '', sentAt = null) {
         id: '',
         subject,
         body,
-        isRead: false,
-        isStared: null,
+        isRead: true,
+        isStared: false,
         sentAt,
         removedAt: null,
         from: gLoggedinUser.email,
