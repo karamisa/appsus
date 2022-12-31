@@ -6,6 +6,8 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
+    getFormattedDate,
+    getFormattedMonthName,
     saveToStorage,
     loadFromStorage
 }
@@ -63,6 +65,22 @@ function getMonthName(date) {
     return monthNames[date.getMonth()]
 }
 
+function getFormattedMonthName(timestamp) {
+    const date = new Date(timestamp)
+    return getMonthName(date)
+
+}
+
+function getFormattedDate(timestamp) {
+    const date = new Date(timestamp)
+    // const isToday = _isBeforeToday(date)
+    // if (isToday) {
+    //     return date.toLocaleTimeString();
+    // }
+    let dd = date.getDate();
+    if (dd < 10) dd = '0' + dd;
+    return (dd)
+}
 
 function saveToStorage(key, val) {
     localStorage.setItem(key, JSON.stringify(val))
