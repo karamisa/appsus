@@ -5,19 +5,22 @@
     justify-content: center;
     word-wrap: break-word;
     text-align: center;
-    
+
 }
+
+
 
 
 .note-preview h4 {
     font-size: 1.3em;
     margin-bottom: 1em;
 }
+
 .note-preview img {
     max-width: 100%;
     object-fit: cover;
     border-radius: 3px;
-    margin:0 auto;
+    margin: 0 auto;
     margin-bottom: 10px;
 }
 
@@ -31,7 +34,7 @@
     margin-top: 0.1em;
 }
 
-.todo-list-item{
+.todo-list-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,8 +58,13 @@
     justify-content: space-between;
     border-radius: 10px;
     padding: 10px;
+    border: 1px solid #e0e0e0;
 }
 
+.note-preview:hover{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+}
 
 
 .note-menu-btn {
@@ -75,7 +83,8 @@
 .note-menu-btn i {
     padding: 10px 10px;
 }
-.note-menu-btn i:hover{
+
+.note-menu-btn i:hover {
     box-shadow: 0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 15%);
     background-color: rgb(66 133 244 / 20%);
 }
@@ -88,22 +97,28 @@
     margin-inline-end: 0.5em;
 }
 
-.note-menu-btn i{
+.note-menu-btn i {
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
 }
-.note-preview:hover .note-menu .note-menu-btn i{
+
+.note-preview:hover .note-menu .note-menu-btn i {
     opacity: 1;
 }
 
-.note-color-btn-container{
+.note-color-btn-container {
     position: relative;
 }
-.note-color-btn-container:hover>:last-child{
+
+
+
+.note-color-btn-container:hover>:last-child {
     display: flex;
 }
 
- .pin-yellow {
-    color: yellow;
+.pin
+
+.pin-yellow {
+    color: black;
     opacity: 1 !important;
 }

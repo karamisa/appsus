@@ -1,39 +1,72 @@
 .add-note{
-    width: 80%;
+    width: 50%;
+
+
 }
 .add-note form {
     width: 100%;
-    padding: 15px;
-    margin: 1em auto;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    position: relative;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 8px;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
+
 
 .add-note form input {
     width: 100%;
-    padding: 12px 20px;
+    padding: 1em .95em .75em;
     margin: 8px 0;
     box-sizing: border-box;
-    border: none;
-    border-bottom: 2px solid #ddd;
+    border:none;
+    line-height: 24px;
+    font-family: roboto;
+    color: #202124 ;
+    font-weight: 600;
+    font-size: .95em;
 }
 
-.add-note form input:focus {
+.form-add-value:focus, .form-add-title:focus {
     outline: none;
-    border-bottom-color: #2196f3;
 }
 
-.add-note form .add-btn {
+
+
+
+.form-add-title[value='']{
+    display: none;
+}
+.add-note form:focus-within>input:first-child{
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 1em .95em .75em
+}
+.form-add-title::-webkit-input-placeholder {
+    font-weight: bold;
+}
+
+
+.form-menu .add-btn {
+    visibility: hidden
+}
+
+.add-note form:focus-within .form-menu .add-btn {
+    display: block;
+    visibility:visible;
     background-color: #2196f3;
     color: white;
-    padding: 14px 20px;
+    padding: 9px 11px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: .7em;
 }
 
-.add-note form .add-btn:hover {
+
+.add-note form:focus-within .form-menu .add-btn:hover {
     background-color: #0b7dda;
 }
 
@@ -41,7 +74,16 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    font-size: 1em;
+    font-size: 1.5em;
+    position: absolute;
+    top:10%;
+    right: -5px;
+}
+
+.add-note form:focus-within .form-menu {
+    position:relative;
+    padding-inline-end: 1.5em;
+
 }
 
 .add-options {
@@ -51,11 +93,12 @@
 }
 
 .add-options .button-type>*{
-    padding: 1em;
+    padding: .4em .6em;
     background: padding-box;
     color: #202124;
     opacity: .7;
     transition: opacity 0.2s ease-in-out;
+    font-size: 0.8em;
 }
 
 
