@@ -38,3 +38,9 @@
     color: #333;
 }
 
+
+@media (max-width: 780px) {
+    .welcome {
+        font-size: 5em;
+    }
+}

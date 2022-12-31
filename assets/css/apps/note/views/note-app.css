@@ -1,5 +1,5 @@
 .note-index {
-    width: 100vw;
+    width: 98vw;
 }
 
 .note-app.main-content {
@@ -44,6 +44,9 @@
 
     .notes-list {
         padding: 0.5em;
+    }
+    .note-list-title {
+        padding-left: 0.125em;
     }
 
     .note-index {
