@@ -1,9 +1,9 @@
-.user-msg {
+/* .user-msg {
     background-color: lightgray;
     padding: 1em;
     position: absolute;
-    top: 1em;
-    right: 1em;
+
+
 }
 
 .user-msg.success {
@@ -18,4 +18,39 @@
 .user-msg button{
     float: right;
     margin: 1em;
+    top: 1em;
+    right: 1em;
+} */
+
+
+.user-msg {
+    /* Add some spacing around the message */
+    padding: 1em;
+    margin: 1em 0;
+  
+    /* Give the message a background color and border */
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+  
 }
+    /* Style the close button */
+.user-msg button {
+      float: right;
+      border: none;
+      background: transparent;
+      color: #888;
+      cursor: pointer;
+    }
+
+  
+  /* Add a success style for messages of type "success" */
+  .user-msg.success {
+    border-color: #4caf50;
+    color: #4caf50;
+  }
+  
+  /* Add a danger style for messages of type "error" */
+  .user-msg.error {
+    border-color: #f44336;
+    color: #f44336;
+  }
