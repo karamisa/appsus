@@ -9,15 +9,6 @@ export function MailCompose() {
   const [email, setEmail] = useState(mailService.getEmptyEmailToSend())
   const navigate = useNavigate()
 
-  // useEffect(()=>{
-  //   mailService.save(email)
-  //   let intervalID= setInterval(()=>{
-  //     mailService.save(email).then(console.log)
-  //   },2000)
-  //   return () => {clearInterval(intervalID)}
-  // },[])
-
-
   function onCloseCompose(){
     mailService.save(email).then(() => setEmail(mailService.getEmptyEmailToSend()))
     showSuccessMsg('Saved to drafts!')

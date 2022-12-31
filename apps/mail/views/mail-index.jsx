@@ -4,7 +4,7 @@ const { Outlet } = ReactRouterDOM
 import { MailFilter } from '../cmps/mail-filter.jsx';
 import { MailList } from '../cmps/mail-list.jsx';
 import { MailFolderList } from '../cmps/mail-folder-list.jsx'
-
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 import { mailService } from './../services/mail.service.js';
 
 export function MailIndex() {
@@ -14,9 +14,6 @@ export function MailIndex() {
     useEffect(() => {
         loadEmails()
     }, [criteria])
-
-
-
 
 
     function loadEmails() {
@@ -36,19 +33,25 @@ export function MailIndex() {
         setCriteria((prevCriteria) => ({ ...prevCriteria, txt, isStared, isRead }))
     }
 
-
     function onToggleMailProp(prop, val, emailId) {
-        const emailtoUpdate = emails.find(email => email.id === emailId)
-        const emailtoUpdateIdx = emails.findIndex(email => email.id === emailId)
-        emailtoUpdate[prop] = val
-        const emailsToUpdate = emails.map((email, idx) => {
-            return (idx === emailtoUpdateIdx) ? emailtoUpdate : email
-        })
-        setEmails(emailsToUpdate)
-        mailService.save(emailtoUpdate).then((email) => {
-            console.log(email)
-            setCriteria((prevCriteria) => ({ ...prevCriteria }))
-        })
+        if (prop === 'removedAt' && criteria.status === 'trash') {
+            mailService.remove(emailId).then(() => {
+                showSuccessMsg('Email removed!')
+                setCriteria((prevCriteria) => ({ ...prevCriteria }))
+            })
+        } else {
+            const emailtoUpdate = emails.find(email => email.id === emailId)
+            const emailtoUpdateIdx = emails.findIndex(email => email.id === emailId)
+            emailtoUpdate[prop] = val
+            const emailsToUpdate = emails.map((email, idx) => {
+                return (idx === emailtoUpdateIdx) ? emailtoUpdate : email
+            })
+            setEmails(emailsToUpdate)
+            mailService.save(emailtoUpdate).then((email) => {
+                console.log(email)
+                setCriteria((prevCriteria) => ({ ...prevCriteria }))
+            })
+        }
     }
 
     return (
@@ -63,5 +66,4 @@ export function MailIndex() {
             </section>
         </section>
     )
-
 }

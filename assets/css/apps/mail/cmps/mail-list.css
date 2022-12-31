@@ -111,7 +111,6 @@ h3.un-bold {
 .subject{
   text-overflow: ellipsis;
   margin-inline-end: 10px;
-  /* min-width: 100px; */
   overflow-x: hidden;
   white-space: nowrap;
   letter-spacing: 0.3px;
@@ -132,7 +131,6 @@ h3.un-bold {
 
 .date{
   text-align: right;
-  /* padding-inline-start: 50px; */
   width: 25%;
   position: absolute;
   right: 20px;
@@ -195,7 +193,6 @@ h3.un-bold {
   .date{
     text-align: right;
     padding-bottom: 2px;
-    /* padding-inline-start: 50px; */
   }
 }
 
@@ -210,7 +207,6 @@ h3.un-bold {
     text-overflow: ellipsis;
     align-self: flex-start;
     max-width: calc(75vw - 17rem);
-    /* display: unset; */
     align-self: center;
   }
 
@@ -220,15 +216,8 @@ h3.un-bold {
     margin-right: 30px;
   }
 
-  /* .mail-preview .content {
-    align-self: unset;
-  } */
-
   .mail-link{
     display: flex;
   }
-  /* .mail-preview .subject {
-    margin-left: 40px;
-  } */
 }
 

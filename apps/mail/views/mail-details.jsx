@@ -3,6 +3,7 @@ const { useParams, useNavigate } = ReactRouterDOM
 
 import { mailService } from "../services/mail.service.js"
 import { utilService } from '../../../services/util.service.js'
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 
 export function MailDetails() {
     const [email, setEmail] = useState(null);
@@ -38,6 +39,7 @@ export function MailDetails() {
     function onRemoveEmail(emailId) {
         mailService.remove(emailId).then(() => {
             navigate(`/mail/details/${nextEmailId}`)
+            showSuccessMsg('Email removed!')
         })
     }
 
@@ -48,17 +50,16 @@ export function MailDetails() {
             <div className="email-details">
                 <div className="email-details-header">
                     <button className="details-back" onClick={() => onGoBack()}>
-                    <i className="fa-solid fa-arrow-left"></i>
-                    {/* <span> Back</span> */}
+                        <i className="fa-solid fa-arrow-left"></i>
                     </button>
                     <button className="details-remove" onClick={() => onRemoveEmail(email.id)}>
-                    <i className="fas fa-trash-alt"></i>
+                        <i className="fas fa-trash-alt"></i>
                     </button>
                 </div>
                 <div className="details-subject">{email.subject}</div>
                 <div className="email-description">
                     <div className="details-sender"><span className="bold black">From: </span>{email.from}</div>
-                    <div className="details-date">{ utilService.getFullDate(email.sentAt)}</div>
+                    <div className="details-date">{utilService.getFullDate(email.sentAt)}</div>
                 </div>
                 <div className="details-body">{email.body}</div>
             </div>

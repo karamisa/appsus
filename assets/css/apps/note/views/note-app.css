@@ -1,42 +1,42 @@
-.note-index{
+.note-index {
     width: 100vw;
 }
+
 .note-app.main-content {
     align-items: center;
     flex-grow: 1;
 }
 
-
-.notes-list{
+.notes-list {
     width: 100%;
     column-count: 4;
     column-width: 200px;
-    padding:2em;
+    padding: 2em;
 }
 
 .note-filter-list {
-   width: 20%;
-   height: 100vh;
-   margin-top: 20px;
+    width: 20%;
+    height: 100vh;
+    margin-top: 20px;
 }
 
 @media (max-width: 780px) {
-.note-filter-list {
-    width: 40px;
-    margin-top: 80px;
-    position: fixed;
-  }
-  .note-app.main-content {
-    margin-top: 80px;
-    margin-left: 70px;
- 
-}
-.notes-list {
-    padding:0.5em;
-}
-.note-index{
-    width: 90vw;
-}
+    .note-filter-list {
+        width: 40px;
+        margin-top: 80px;
+        position: fixed;
+    }
 
+    .note-app.main-content {
+        margin-top: 80px;
+        margin-left: 70px;
+    }
 
+    .notes-list {
+        padding: 0.5em;
+    }
+
+    .note-index {
+        width: 90vw;
+    }
 }

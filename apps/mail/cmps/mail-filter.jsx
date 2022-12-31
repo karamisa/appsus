@@ -14,7 +14,7 @@ export function MailFilter({ onChangeFilter }) {
   }
   function handleReadChange(event) {
     console.log('event.target.value', event.target.value)
-    if (event.target.value === 'starred'){
+    if (event.target.value === 'starred') {
       setIsStared(true)
       setIsRead('')
     }

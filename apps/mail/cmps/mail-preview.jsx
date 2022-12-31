@@ -12,8 +12,8 @@ export function MailPreview({ email, onToggleMailProp }) {
     }
 
     function onHandleRemove() {
-        { onToggleMailProp('removedAt', Date.now(), email.id) }
-    }
+        if(!email.removedAt) onToggleMailProp('removedAt', Date.now(), email.id)
+     }
 
     function onEnterMail(ev) {
         ev.stopPropagation()
@@ -40,7 +40,6 @@ export function MailPreview({ email, onToggleMailProp }) {
                 <h3 className="date clean-space">{utilService.getFormattedDate(email.sentAt)} {utilService.getFormattedMonthName(email.sentAt)}</h3>
             </Link>
             <button className="trash-btn" onClick={() => onHandleRemove()}>
-                {/* <i className="fas fa-trash-alt"></i> */}
                 <i className="fa-regular fa-trash-can"></i>
             </button>
             <button className="reading-btn" onClick={() => onHandleToggleIsRead()}>

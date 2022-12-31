@@ -31,9 +31,9 @@ function query(criteria = { status: 'inbox' }) {
         .then(emails => {
             if (criteria.status) {
                 if (criteria.status === 'inbox') emails = emails.filter(email => email.to === gLoggedinUser.email && email.removedAt === null)
-                if (criteria.status === 'sent') emails = emails.filter(email => email.from === gLoggedinUser.email)
+                if (criteria.status === 'sent') emails = emails.filter(email => email.from === gLoggedinUser.email && email.removedAt === null)
                 if (criteria.status === 'trash') emails = emails.filter(email => email.removedAt !== null)
-                if (criteria.status === 'draft') emails = emails.filter(email => email.sentAt === null)
+                if (criteria.status === 'draft') emails = emails.filter(email => email.sentAt === null && email.removedAt === null)
             }
 
             if (criteria.txt) {
@@ -164,59 +164,5 @@ function _generateEmailData() {
         to
     }
 }
-
-
-
-// function _createDemoEmails() {
-//     const DEMO_EMAILS = [
-//         {
-//             id: 'e101',
-//             subject: 'Miss you!',
-//             body: 'Would love to catch up sometimes',
-//             isRead: true,
-//             isStared: false,
-//             sentAt: 1551133930594,
-//             to: 'user@appsus.com'
-//         },
-//         {
-//             id: 'e102',
-//             subject: 'Hello from Paris!',
-//             body: 'I hope you\'re doing well. I\'m having a great time here in Paris. How about you?',
-//             isRead: true,
-//             isStared: false,
-//             sentAt: 1551144930000,
-//             to: 'momo@momo.com'
-//         },
-//         {
-//             id: 'e103',
-//             subject: 'Important update',
-//             body: 'We have made some changes to our project plan. Please see the attached document for details.',
-//             isRead: false,
-//             isStared: false,
-//             sentAt: 1551154930294,
-//             to: 'momo@momo.com'
-//         },
-//         {
-//             id: 'e104',
-//             subject: 'Invitation to our wedding',
-//             body: 'We are thrilled to invite you to our wedding on June 21st. We hope you can join us for this special occasion.',
-//             isRead: false,
-//             isStared: true,
-//             sentAt: 1551165931594,
-//             to: 'user@appsus.com'
-//         },
-//         {
-//             id: 'e105',
-//             subject: 'Thank you for your help',
-//             body: 'I really appreciate your help on the project. We wouldn\'t have been able to finish it on time without your support.',
-//             isRead: false,
-//             isStared: true,
-//             sentAt: 1551175430594,
-//             to: 'user@appsus.com'
-//         }]
-
-//     utilService.saveToStorage(EMAIL_KEY, DEMO_EMAILS)
-// }
-
 
 

@@ -1,26 +1,3 @@
-/* .mail-index {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-} */
-
-/* .mail-toolbar-container {
-    grid-area: 1 / 1 / 2 / 13;
-} */
-
-/* .mail-folder-list-container {
-    grid-area: 2 / 1 / 6 / 3;
-} */
-
-/* .mail-body-container {
-    grid-area: 2 / 3 / 6 / 13;
-} */
-
-/* .mail-compose-container {
-     grid-area: 3 / 8 / 6 / 12;   
-} */
 
 .black{
     color:black;
@@ -37,7 +14,6 @@
 
 .mail-app{
     overflow-x: hidden;
-    /* overflow-y: scroll; */
 }
 
 

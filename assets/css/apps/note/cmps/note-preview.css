@@ -8,11 +8,6 @@
     width: min-content;
 }
 
-
-
-
-
-
 .note-preview h4 {
     font-size: 1.3em;
     margin-bottom: 1em;
@@ -61,7 +56,6 @@
 
 .note-preview:hover{
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-
 }
 
 
@@ -107,7 +101,6 @@
 .note-color-btn-container {
     position: relative;
 }
-
 
 
 .note-color-btn-container:hover>:last-child {
