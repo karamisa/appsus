@@ -1,4 +1,6 @@
 import { mailService } from "../services/mail.service.js"
+import {UserMsg} from "../../../cmps/user-msg.jsx"
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect, useRef } = React
 const { useNavigate } = ReactRouterDOM
@@ -17,6 +19,8 @@ export function MailCompose() {
 
 
   function onCloseCompose(){
+    mailService.save(email).then(() => setEmail(mailService.getEmptyEmailToSend()))
+    showSuccessMsg('Saved to drafts!')
     navigate('/mail')
   }
 
@@ -28,10 +32,11 @@ export function MailCompose() {
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     email.sentAt = Date.now()
     mailService.save(email).then(() => setEmail(mailService.getEmptyEmailToSend()))
-
+    showSuccessMsg('Email Sent!')
+    navigate('/mail')
   }
 
   return (
