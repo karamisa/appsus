@@ -14,6 +14,10 @@ header {
 .main-nav {
     display: flex;
     align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    margin-inline-end: 0px;
 }
 .app-header .app-header-logo {
     font-family: fredoka;
@@ -32,7 +36,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-right: 2rem;
+    justify-self: flex-end;
 }
 
 
@@ -121,7 +125,7 @@ nav a.active {
         visibility: visible;
     }
 
-    ul{
+    ul.nav-list{
         flex-direction: column;
         width: 250px;
     }

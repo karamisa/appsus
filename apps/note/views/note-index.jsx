@@ -51,16 +51,16 @@ export function NoteIndex() {
     function saveChanges(field, value, noteId) {//handles a change in text note
         console.log(value)
         const noteToUpdate = notes.find(note => note.id === noteId)
-        const updatedNote = {...noteToUpdate, [field]: value}
+        const updatedNote = { ...noteToUpdate, [field]: value }
         console.log(updatedNote)
-        const idx = notes.findIndex(note => note.id===noteId)
-        const updatedNotes = notes.map((note,noteIdx)=> (noteIdx===idx) ? updatedNote : note )
+        const idx = notes.findIndex(note => note.id === noteId)
+        const updatedNotes = notes.map((note, noteIdx) => (noteIdx === idx) ? updatedNote : note)
         setNotes(updatedNotes)
-        notesService.save(updatedNote).then((updatedNote)=>{
+        notesService.save(updatedNote).then((updatedNote) => {
             console.log(updatedNote)
-            })
-        }
-          
+        })
+    }
+
 
     function onAddNote(name, title, value) {
         const newNote = notesService.getNewEmptyNote(name, title, value)
@@ -69,14 +69,14 @@ export function NoteIndex() {
     }
 
 
-
-    return <section className="notes-index">
-        <section className='notes-app main-content'>
+    return <section className='note-index flex'>
+        <NoteFilter onSetFilter={onSetFilter} />
+        <div className="note-app main-content flex flex-column">
             <AddNotes onAddNote={onAddNote} />
-            <NoteFilter onSetFilter={onSetFilter} />
             {notes && < NoteList notes={notes} onRemoveNote={onRemoveNote} onNoteClicked={onNoteClicked} saveChanges={saveChanges} />}
-        </section>
+        </div>
     </section>
+
 
 
 

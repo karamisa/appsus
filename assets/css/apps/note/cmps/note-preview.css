@@ -5,8 +5,10 @@
     justify-content: center;
     word-wrap: break-word;
     text-align: center;
-
+    width: min-content;
 }
+
+
 
 
 
@@ -25,7 +27,6 @@
 }
 
 .next-todo-input {
-    width: 100%;
     background-color: transparent;
     border: none;
     font-size: 1.2em;
@@ -53,9 +54,6 @@
     break-inside: avoid;
     margin-bottom: 1rem;
     vertical-align: baseline;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     border-radius: 10px;
     padding: 10px;
     border: 1px solid #e0e0e0;
@@ -121,4 +119,11 @@
 .pin-yellow {
     color: black;
     opacity: 1 !important;
+}
+
+
+@media (max-width: 780px) {
+    .note-menu-btn i{
+        opacity: 1;
+    }
 }

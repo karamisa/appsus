@@ -1,7 +1,5 @@
 .add-note{
     width: 50%;
-
-
 }
 .add-note form {
     width: 100%;
@@ -116,4 +114,22 @@
 
 .add-options .button-type .fa-youtube.active{
     color: #f00;
+}
+
+
+@media (max-width: 780px) {
+    .add-note{
+        width: 100%;
+        padding: 8px;
+    }
+    .form-menu {
+        right: -45px;
+    }
+    .add-note form:focus-within .form-menu {
+        right: -15px;
+    
+    }
+    .add-options .button-type>*{
+        padding: .4em .2em;
+    }
 }
