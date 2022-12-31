@@ -12,11 +12,15 @@ export function ColorPaletteSelector({note, saveChanges}) {
                 break
             case 'green': color = '#ccff90'
                 break
-            case 'red': color = '#eb7d7d'
+            case 'red': {
+                console.log('here')
+                color = '#eb7d7d'}
+                break
+
             default:
                 return color
         }
-
+        console.log('here')
         const updatedStyle = {backgroundColor: color}
         saveChanges('style', updatedStyle, note.id)
     }
