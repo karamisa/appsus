@@ -1,5 +1,4 @@
 import { mailService } from "../services/mail.service.js"
-import {UserMsg} from "../../../cmps/user-msg.jsx"
 import { showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect, useRef } = React
