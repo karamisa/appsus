@@ -2,7 +2,7 @@
 export function About() {
     return <section className="about">
         <div className="karam team">
-            <img src="assets/img/karam.jpg" alt="Karam" />
+            <img src="assets/img/Karam.jpg" alt="Karam" />
             <div className="about-container">
                 <span className="name">Karam Isa</span>
                 <span>Born and raised in the United States,</span>
@@ -13,7 +13,7 @@ export function About() {
             </div>
         </div>
         <div className="elichay team">
-            <img src="assets/img/elichay.jpg" alt="Elichay" />
+            <img src="assets/img/Elichay.jpg" alt="Elichay" />
             <div className="about-container">
                 <span className="name">Elichay Kaplan</span>
                 <span>Born and raised in the Israel,</span>
